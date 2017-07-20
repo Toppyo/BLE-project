@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">BLE_Master_System</string>
+
+    <string name="user_label">UserID</string>
+    <string name="password_label">Password</string>
+    <string name="login_ok">Login Success</string>
+
+    <!-- Welcome Strings -->
+    <string name="welcome_title">Welcome</string>
+    <string name="tour_name">Tour</string>
+    <string name="people_counting">People</string>
+    <string name="appointment_time">Time</string>
+
+    <!-- Check Strings -->
+    <string name="whole_people">People</string>
+    <string name="present_people">Present</string>
+    <string name="absent_people">Absent</string>
+    <string name="check_title">Check</string>
+
+    <!-- List Strings -->
+    <string name="seat_number">Seat</string>
+    <string name="customer_name">Name</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_id">UserID</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <!-- Bluetooth Strings -->
+    <string name="dump_failed">Dump Failed.</string>
+    <string name="dump_succeeded_suffix"> Dump Succeeded.</string>
+    <string name="label_ble">This is my BLE!</string>
+    <string name="label_not_ble">This is not my BLE.</string>
+    <string name="ble_not_supported">BLE not supported on this device.</string>
+    <string name="bt_not_supported">Bluetooth not supported on this device.</string>
+    <string name="bt_not_enabled">Bluetooth is not enabled, turn it on.</string>
+
+    <!-- Scan Strings　-->
+    <string name="action_clear">CLEAR LIST</string>
+    <string name="action_scan">SCAN</string>
+    <string name="action_stop">STOP</string>
+    <string name="action_dump">DUMP CSV</string>
+</resources>
