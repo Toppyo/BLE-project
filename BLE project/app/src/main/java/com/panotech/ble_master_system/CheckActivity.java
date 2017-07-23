@@ -26,7 +26,7 @@ public class CheckActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_table_activity);
+        setContentView(R.layout.activity_check);
         mCustomers = CustomerLab.get(this).getCustomers();
         mainLayout = (LinearLayout)findViewById(R.id.test_layout_container);
         LayoutInflater layoutInflater = LayoutInflater.from(this);
@@ -70,20 +70,20 @@ public class CheckActivity extends Activity {
             int row = (i - column) / 4;
             if(column<2){
                 View v = view.GetCellView(row, column);
-                if(i%2 == 0){
-                    v.setBackground(getDrawable(R.drawable.rectanglebackgroundblue));
+                if(i%5 == 0){
+                    v.setBackground(getDrawable(R.drawable.rectanglebackgroundred));
                 }
                 else{
-                    v.setBackground(getDrawable(R.drawable.rectanglebackgroundred));
+                    v.setBackground(getDrawable(R.drawable.rectanglebackgroundblue));
                 }
             }
             else{
                 View v = view.GetCellView(row, column+1);
-                if(i%2 == 0){
-                    v.setBackground(getDrawable(R.drawable.rectanglebackgroundblue));
+                if(i%7 == 0){
+                    v.setBackground(getDrawable(R.drawable.rectanglebackgroundred));
                 }
                 else{
-                    v.setBackground(getDrawable(R.drawable.rectanglebackgroundred));
+                    v.setBackground(getDrawable(R.drawable.rectanglebackgroundblue));
                 }
             }
         }

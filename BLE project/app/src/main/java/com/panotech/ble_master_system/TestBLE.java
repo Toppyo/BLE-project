@@ -15,11 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.panotech.ble_master_system_bluetooth.DeviceAdapter;
-import com.panotech.ble_master_system_utils.ScannedDevice;
+import com.panotech.ble_master_system_bluetooth.ScannedDevice;
 
 import java.util.ArrayList;
 
-import static com.panotech.ble_master_system_utils.ScannedDevice.asHex;
+import static com.panotech.ble_master_system_bluetooth.ScannedDevice.asHex;
 
 /**
  * Created by sylar on 2017/07/19.
@@ -101,10 +101,17 @@ public class TestBLE extends Activity {
             ListView deviceListView = (ListView) findViewById(R.id.test_list_view);
             mDeviceAdapter = new DeviceAdapter(this, R.layout.list_ble,
                     new ArrayList<ScannedDevice>());
-            deviceListView.setAdapter(mDeviceAdapter);
+            mRefreshButton.setText(" Stop   ");
+            try {
+                Thread.sleep(3000);
+                deviceListView.setAdapter(mDeviceAdapter);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         } else {
             mBluetoothAdapter.stopLeScan(scanCallback);
             mScanning = false;
+            mRefreshButton.setText("Refresh");
         }
     }
 }

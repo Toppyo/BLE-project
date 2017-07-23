@@ -27,12 +27,12 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     if (mID.getText().toString().equals("Admin") && mPassword.getText().toString().equals("123456")) {
-                        Toast.makeText(getApplicationContext(), "@string/login_ok", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getText(R.string.login_ok), Toast.LENGTH_LONG).show();
                         Intent login = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(login);
                     }
                 }catch(Exception e){
-                    Toast.makeText(getApplicationContext(), "@string/login_failed", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getText(R.string.login_failed), Toast.LENGTH_LONG).show();
                 }
             }
         });

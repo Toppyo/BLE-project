@@ -1,9 +1,13 @@
-package com.panotech.ble_master_system_utils;
+package com.panotech.ble_master_system_bluetooth;
 
 import android.bluetooth.BluetoothDevice;
-import android.widget.LinearLayout;
 
-import com.panotech.ble_master_system_bluetooth.BLE;
+import com.panotech.ble_master_system_utils.DateUtil;
+import com.panotech.ble_master_system_utils.LimitedSizeQueue;
+import com.panotech.ble_master_system_webconnect.Customer;
+import com.panotech.ble_master_system_webconnect.CustomerLab;
+
+import java.util.UUID;
 
 /**
  * Created by sylar on 2017/07/17.
@@ -17,6 +21,9 @@ public class ScannedDevice {
     private byte[] mScanRecord;
     private BLE mBLE;
     private long mLastUpdatedMs;
+    private Double aveRssi;
+    private UUID mUUID;
+    private String mName, mSeat, mAppear;
 
     public ScannedDevice(BluetoothDevice device, int rssi, byte[] scanRecord, long now) {
         if (device == null) {
@@ -30,6 +37,10 @@ public class ScannedDevice {
         }
         mRssi = rssi;
         mScanRecord = scanRecord;
+        mUUID = UUID.randomUUID();
+        mName = "";
+        mSeat = "";
+        mAppear = "";
         checkIBeacon();
     }
 
@@ -37,6 +48,10 @@ public class ScannedDevice {
         if (mScanRecord != null) {
             mBLE = BLE.fromScanData(mScanRecord, mRssi);
         }
+    }
+
+    public UUID getUUID() {
+        return mUUID;
     }
 
     public BluetoothDevice getDevice() {
@@ -84,6 +99,35 @@ public class ScannedDevice {
         mDisplayName = displayName;
     }
 
+    public Double getAveRssi() {
+        aveRssi = calculateAveRssi(rssiStore);
+        return aveRssi;
+    }
+
+    public String getName() {
+        return mName;
+    }
+
+    public void setName(String name) {
+        mName = name;
+    }
+
+    public String getSeat() {
+        return mSeat;
+    }
+
+    public void setSeat(String seat) {
+        mSeat = seat;
+    }
+
+    public String getAppear() {
+        return mAppear;
+    }
+
+    public void setAppear(String appear) {
+        mAppear = appear;
+    }
+
     //输出扫描设备的Csv文件   ----db替换----
     public String toCsv() {
         StringBuilder sb = new StringBuilder();
@@ -119,4 +163,14 @@ public class ScannedDevice {
         return sb.toString();
     }
 
+    public LimitedSizeQueue<Integer> rssiStore = new LimitedSizeQueue(5);
+
+    private Double calculateAveRssi(LimitedSizeQueue<Integer> rssiStore){
+        int i = rssiStore.size();
+        int sum = 0;
+        for(int rssi : rssiStore){
+            sum += rssi;
+        }
+        return sum*(1.0)/i;
+    }
 }

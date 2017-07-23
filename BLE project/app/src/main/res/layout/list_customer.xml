@@ -1,71 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/list_seat_number"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="5dp"
         android:textSize="20sp"
-        android:text="f"/>
+        android:text="Seat"/>
 
     <TextView
         android:id="@+id/list_customer_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="2"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/list_seat_number"
         android:layout_marginLeft="5dp"
         android:textSize="20sp"
-        android:text="u"/>
+        android:text="Name"/>
 
     <TextView
         android:id="@+id/list_customer_sex"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/list_customer_name"
+        android:layout_weight="1"
         android:layout_marginLeft="5dp"
         android:textSize="20sp"
-        android:text="c"/>
+        android:text="Appear"/>
 
     <TextView
         android:id="@+id/list_customer_distance"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/list_customer_sex"
+        android:layout_weight="1"
         android:layout_marginLeft="5dp"
         android:textSize="20sp"
-        android:text="k"/>
+        android:text="Distance"/>
 
-    <!--<TextView
-        android:id="@+id/list_seat_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:text="f"/>
-
-    <TextView
-        android:id="@+id/list_customer_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_below="@+id/list_seat_number"
-        android:text="u"/>
-
-    <TextView
-        android:id="@+id/list_customer_sex"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/list_customer_name"
-        android:text="c"/>
-
-    <TextView
-        android:id="@+id/list_customer_distance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/list_customer_sex"
-        android:text="k"/>-->
-</RelativeLayout>
+</LinearLayout>

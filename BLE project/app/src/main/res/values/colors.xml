@@ -7,4 +7,5 @@
     <color name="colorYellow">#DBDB70</color>
     <color name="colorPurple">#9932CD</color>
     <color name="colorSkyBlue">#87CEEE</color>
+    <color name="colorBlack">#000000</color>
 </resources>

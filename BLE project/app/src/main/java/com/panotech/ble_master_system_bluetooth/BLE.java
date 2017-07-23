@@ -2,6 +2,9 @@ package com.panotech.ble_master_system_bluetooth;
 
 import android.util.Log;
 
+import com.panotech.ble_master_system.R;
+import com.panotech.ble_master_system_utils.LimitedSizeQueue;
+
 import java.util.Locale;
 
 /**
@@ -9,8 +12,8 @@ import java.util.Locale;
  */
 
 public class BLE {
-    public static final int PROXIMITY_IMMEDIATE = 1;
-    public static final int PROXIMITY_NEAR = 2;
+    public static final int PROXIMITY_NEAR = 1;
+    public static final int PROXIMITY_IMMEDIATE = 2;
     public static final int PROXIMITY_FAR = 3;
     public static final int PROXIMITY_UNKNOWN = 0;
 
@@ -24,6 +27,7 @@ public class BLE {
     protected int rssi;
     protected int txPower;
     protected Double runningAverageRssi = null;
+    protected String Distance;
 
     public int getMajor() {
         return major;
@@ -45,6 +49,10 @@ public class BLE {
         return proximityUuid;
     }
 
+    public void setRunningAverageRssi(Double aveRssi){
+        runningAverageRssi = aveRssi;
+    }
+
     @Override
     public int hashCode(){
         return minor;
@@ -58,24 +66,33 @@ public class BLE {
         return accuracy;
     }
 
+//    protected static double calculateAccuracy(int txPower, double rssi) {
+//        if (rssi == 0) {
+//            return -1.0; // if we cannot determine accuracy, return -1.
+//        }
+//
+//        Log.d(TAG, "calculating accuracy based on rssi of " + rssi);
+//
+//
+//        double ratio = rssi * 1.0 / txPower;
+//        if (ratio < 1.0) {
+//            return Math.pow(ratio, 10);
+//        } else {
+//            double accuracy = (0.89976) * Math.pow(ratio, 7.7095) + 0.111;
+//            Log.d(TAG, " avg rssi: " + rssi + " accuracy: " + accuracy);
+//            return accuracy;
+//        }
+//    }
+//...............
+
     protected static double calculateAccuracy(int txPower, double rssi) {
-        if (rssi == 0) {
-            return -1.0; // if we cannot determine accuracy, return -1.
+        if(rssi == 0){
+            return 100.0;
         }
-
-        Log.d(TAG, "calculating accuracy based on rssi of " + rssi);
-
-
-        double ratio = rssi * 1.0 / txPower;
-        if (ratio < 1.0) {
-            return Math.pow(ratio, 10);
-        } else {
-            double accuracy = (0.89976) * Math.pow(ratio, 7.7095) + 0.111;
-            Log.d(TAG, " avg rssi: " + rssi + " accuracy: " + accuracy);
-            return accuracy;
+        else{
+            return Math.pow((txPower - rssi)/20, 10);
         }
     }
-//...............
 
     @Override
     public boolean equals(Object that) {
@@ -170,23 +187,41 @@ public class BLE {
 
     //实际重点测试更改部分 计算圈外圈内的判定公式************************************************:
     protected static int calculateProximity(double accuracy) {
-        if (accuracy < 0) {
+        if (accuracy > 80.0) {
             return PROXIMITY_UNKNOWN;
             // is this correct?  does proximity only show unknown when accuracy is negative?  I have seen cases where it returns unknown when
             // accuracy is -1;
         }
-        if (accuracy < 0.5 ) {
-            return BLE.PROXIMITY_IMMEDIATE;
+        if (accuracy < 80.0 && accuracy > 50.0) {
+            return BLE.PROXIMITY_FAR;
         }
         // forums say 3.0 is the near/far threshold, but it looks to be based on experience that this is 4.0
-        if (accuracy <= 4.0) {
+        if (accuracy < 10.0) {
             return BLE.PROXIMITY_NEAR;
         }
         // if it is > 4.0 meters, call it far
-        return BLE.PROXIMITY_FAR;
+        return BLE.PROXIMITY_IMMEDIATE;
 
     }
      //****************************:
+
+//    protected static int calculateProximity(double accuracy) {
+//        if (accuracy < 0) {
+//            return PROXIMITY_UNKNOWN;
+//            // is this correct?  does proximity only show unknown when accuracy is negative?  I have seen cases where it returns unknown when
+//            // accuracy is -1;
+//        }
+//        if (accuracy < 0.5 ) {
+//            return BLE.PROXIMITY_IMMEDIATE;
+//        }
+//        // forums say 3.0 is the near/far threshold, but it looks to be based on experience that this is 4.0
+//        if (accuracy <= 4.0) {
+//            return BLE.PROXIMITY_NEAR;
+//        }
+//        // if it is > 4.0 meters, call it far
+//        return BLE.PROXIMITY_FAR;
+//
+//    }
 
 //构造方法
     protected BLE(BLE otherble) {
@@ -233,4 +268,5 @@ public class BLE {
         return sb.toString();
     }
     //*****************************
+
 }

@@ -2,8 +2,6 @@ package com.panotech.ble_master_system_bluetooth;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
-import android.content.res.Resources;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +10,11 @@ import android.widget.TextView;
 
 import com.panotech.ble_master_system.R;
 import com.panotech.ble_master_system_utils.DateUtil;
-import com.panotech.ble_master_system_utils.ScannedDevice;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+
+import static com.panotech.ble_master_system_bluetooth.BLE.calculateAccuracy;
+import static com.panotech.ble_master_system_bluetooth.BLE.calculateProximity;
 
 /**
  * Created by sylar on 2017/07/17.
@@ -61,6 +58,11 @@ public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
             if (item.getBLE() != null) {
                 ibeaconInfo.setText(/*res.getString(R.string.label_ble)*/"This is my BLE" + "\n"
                         + item.getBLE().toString());
+                if(rssi != null){
+                    double a = item.getAveRssi();
+                    double b = calculateAccuracy(item.getBLE().txPower, a);
+                    rssi.setText(calculateDistance(b));
+                }
             } else {
                 ibeaconInfo.setText(/*res.getString(R.string.label_not_ble)*/ "This is not my BLE");
             }
@@ -87,7 +89,8 @@ public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
             if (newDevice.getAddress().equals(device.getDevice().getAddress())) {
                 contains = true;
                 // update
-                device.setRssi(rssi);
+//                device.setRssi(rssi);
+                device.rssiStore.add(rssi);
                 device.setLastUpdatedMs(now);
                 device.setScanRecord(scanRecord);
                 break;
@@ -99,32 +102,30 @@ public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
         }
 
         // sort by RSSI
-        Collections.sort(mList, new Comparator<ScannedDevice>() {
-            @Override
-            public int compare(ScannedDevice lhs, ScannedDevice rhs) {
-                if(lhs.getBLE() != null && rhs.getBLE() == null){
-                    return -1;
-                }
-                else if(lhs.getBLE() == null && rhs.getBLE() != null){
-                    return 1;
-                }
-                else {
-                    if (lhs.getRssi() == 0) {
-                        return 1;
-                    } else if (rhs.getRssi() == 0) {
-                        return -1;
-                    }
-                    if (lhs.getRssi() > rhs.getRssi()) {
-                        return -1;
-                    } else if (lhs.getRssi() < rhs.getRssi()) {
-                        return 1;
-                    }
-                    return 0;
-                }
-            }
-        });
-
-        notifyDataSetChanged();
+//        Collections.sort(mList, new Comparator<ScannedDevice>() {
+//            @Override
+//            public int compare(ScannedDevice lhs, ScannedDevice rhs) {
+//                if(lhs.getBLE() != null && rhs.getBLE() == null){
+//                    return -1;
+//                }
+//                else if(lhs.getBLE() == null && rhs.getBLE() != null){
+//                    return 1;
+//                }
+//                else {
+//                    if (lhs.getRssi() == 0) {
+//                        return 1;
+//                    } else if (rhs.getRssi() == 0) {
+//                        return -1;
+//                    }
+//                    if (lhs.getRssi() > rhs.getRssi()) {
+//                        return -1;
+//                    } else if (lhs.getRssi() < rhs.getRssi()) {
+//                        return 1;
+//                    }
+//                    return 0;
+//                }
+//            }
+//        });
 
         // create summary
         int totalCount = 0;
@@ -135,10 +136,13 @@ public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
                 if (device.getBLE() != null) {
                     BLECount++;
                 }
+                else{
+                    mList.remove(device);
+                }
             }
         }
-//        String summary = "BLE:" + Integer.toString(BLECount) + " (Total:"
-//                + Integer.toString(totalCount) + ")";
+
+        notifyDataSetChanged();
 
         String summary = Integer.toString(BLECount) + ":" + Integer.toString(totalCount);
         return summary;
@@ -147,4 +151,41 @@ public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
     public List<ScannedDevice> getList() {
         return mList;
     }
+
+    public double shorttenDouble(double x){
+        int i;
+        x *= 100;
+        i = (int)x;
+        double y = (double)i;
+        double z = y/100;
+        return z;
+    }
+
+    private String calculateDistance(Double accuracy) {
+        StringBuilder sb = new StringBuilder();
+        if (accuracy != null) {
+            int d = calculateProximity(accuracy);
+            switch (d) {
+                case 1:
+                    sb.append("NEAR");
+                    break;
+                case 2:
+                    sb.append("MIDDLE");
+                    break;
+                case 3:
+                    sb.append("FAR");
+                    break;
+                case 0:
+                    sb.append("UNKNOWN");
+                    break;
+            }
+        } else {
+            sb.append("UNKNOWN");
+        }
+        return sb.toString();
+    }
+
+
+
+//    Double.toString(shorttenDouble(item.getBLE().getAccuracy()))
 }

@@ -1,38 +1,47 @@
 <resources>
-    <string name="app_name">BLE_Master_System</string>
+    <string name="app_name">BLE-Beacon SSS点呼システム</string>
 
-    <string name="user_label">UserID</string>
-    <string name="password_label">Password</string>
-    <string name="login_ok">Login Success</string>
-
-    <!-- Welcome Strings -->
-    <string name="welcome_title">Welcome</string>
-    <string name="tour_name">Tour</string>
-    <string name="people_counting">People</string>
-    <string name="appointment_time">Time</string>
-
-    <!-- Check Strings -->
-    <string name="whole_people">People</string>
-    <string name="present_people">Present</string>
-    <string name="absent_people">Absent</string>
-    <string name="check_title">Check</string>
-
-    <!-- List Strings -->
-    <string name="seat_number">Seat</string>
-    <string name="customer_name">Name</string>
-
-    <!-- Strings related to login -->
+    <!-- login Strings -->
     <string name="prompt_id">UserID</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="action_sign_in">送信</string>
+    <string name="action_sign_in_short">送信</string>
+    <string name="user_label">ユーザID</string>
+    <string name="password_label">パスワード</string>
+    <string name="login_ok">ロッグイン成功した！</string>
+    <string name="login_failed">ロッグイン失敗した！</string>
+
+    <!-- Welcome Strings -->
+    <string name="welcome_title">SSS点呼システム へ ようこそ!</string>
+    <string name="tour_name">ツアー名</string>
+    <string name="people_counting">乗員人数</string>
+    <string name="appointment_time">予定時間</string>
+
+    <!-- Check Strings -->
+    <string name="check_title">点呼チェック</string>
+    <string name="whole_people">乗員人数</string>
+    <string name="present_people">在席</string>
+    <string name="absent_people">不在</string>
+
+    <!-- List Strings -->
+    <string name="list_title">不在者ピックアップ</string>
+    <string name="list_seat">席番</string>
+    <string name="list_name">氏名</string>
+    <string name="list_appear">容姿</string>
+    <string name="list_distance">近接度</string>
+
+    <!-- Settings Strings -->
+    <string name="settings_title">登録・設定</string>
+    <string name="settings_operation">対象設定</string>
+    <string name="settings_newdevice">新規</string>
+    <string name="settings_changedevice">修正</string>
+    <string name="settings_uuid">UUID</string>
+    <string name="settings_major">Major</string>
+    <string name="settings_minor">Minor</string>
+    <string name="settings_name">氏名</string>
+    <string name="settings_seat">席番</string>
+    <string name="settings_Appear">容姿</string>
+    <string name="settings_distance">近接度</string>
 
     <!-- Bluetooth Strings -->
     <string name="dump_failed">Dump Failed.</string>
@@ -48,4 +57,8 @@
     <string name="action_scan">SCAN</string>
     <string name="action_stop">STOP</string>
     <string name="action_dump">DUMP CSV</string>
+    <string name="distance_near">NEAR</string>
+    <string name="distance_middle">MIDDLE</string>
+    <string name="distance_far">FAR</string>
+    <string name="distance_unknown">UNKNOWN</string>
 </resources>

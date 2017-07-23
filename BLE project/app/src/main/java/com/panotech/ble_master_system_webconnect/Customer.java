@@ -7,16 +7,24 @@ import java.util.UUID;
  */
 
 public class Customer {
-    private String name, seat, sex;
-    private UUID mUUID;
+    private String name, seat, appear, distance;
     private int seatNumber;
+    private int position;
 
     public Customer(){
-        mUUID = UUID.randomUUID();
+        position = 0;
         name = new String();
         seat = new String();
-        sex = new String();
+        appear = new String();
+        distance = new String();
         seatNumber = 0;
+    }
+
+    public Customer(int iposition, String iname, String iseat, String iappear) {
+        position = iposition;
+        name = iname;
+        seat = iseat;
+        appear = iappear;
     }
 
     public String getName() {
@@ -35,16 +43,12 @@ public class Customer {
         this.seat = seat;
     }
 
-    public String getSex() {
-        return sex;
+    public String getAppear() {
+        return appear;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public UUID getID() {
-        return mUUID;
+    public void setAppear(String appear) {
+        this.appear = appear;
     }
 
     public int getSeatNumber() {
@@ -53,5 +57,21 @@ public class Customer {
 
     public void setSeatNumber(int seatNumber) {
         this.seatNumber = seatNumber;
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }

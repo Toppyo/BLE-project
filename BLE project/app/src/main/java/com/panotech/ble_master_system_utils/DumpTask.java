@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.panotech.ble_master_system.R;
+import com.panotech.ble_master_system_bluetooth.ScannedDevice;
 
 import java.lang.ref.WeakReference;
 import java.util.List;

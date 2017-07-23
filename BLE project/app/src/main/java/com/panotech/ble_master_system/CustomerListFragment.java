@@ -9,6 +9,8 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.panotech.ble_master_system_webconnect.Customer;
@@ -48,25 +50,15 @@ public class CustomerListFragment extends ListFragment {
             }
             // Configure the view for this Crime
             Customer c = getItem(position);
-            /********
-             TextView titleTextView = (TextView) convertView
-             .findViewById(R.id.crime_list_item_titleTextView);
-             titleTextView.setText(c.getTitle());
-             TextView dateTextView = (TextView) convertView
-             .findViewById(R.id.crime_list_item_dateTextView);
-             dateTextView.setText(c.getDate().toString());
-             CheckBox solvedCheckBox = (CheckBox) convertView
-             .findViewById(R.id.crime_list_item_solvedCheckBox);
-             solvedCheckBox.setChecked(c.isSolved());
-             *******/
 
             TextView mNameTextView = (TextView)convertView.findViewById(R.id.list_customer_name);
             mNameTextView.setText(c.getName());
             TextView mSeatTextView = (TextView)convertView.findViewById(R.id.list_seat_number);
             mSeatTextView.setText(c.getSeat());
             TextView mSexTextView = (TextView)convertView.findViewById(R.id.list_customer_sex);
-            mSexTextView.setText(c.getSex());
-            //TextView mDistanceTextView = (TextView)convertView.findViewById(R.id.list_customer_distance);
+            mSexTextView.setText(c.getAppear());
+            TextView mDistanceTextView = (TextView)convertView.findViewById(R.id.list_customer_distance);
+            mDistanceTextView.setText(c.getDistance());
             return convertView;
         }
 

@@ -2,6 +2,7 @@ package com.panotech.ble_master_system;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.TextPaint;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TableLayout;
@@ -107,7 +108,10 @@ public class TestTableView extends TableLayout {
         TextView tView=new TextView(getContext());
         tView.setGravity(Gravity.CENTER);
         tView.setText(st1 + "\n" + st2);
-//        tView.setAutoSizeTextTypeWithDefaults();
+        TextPaint paint = tView.getPaint();
+        paint.setFakeBoldText(true);
+        tView.setTextColor(getResources().getColor(R.color.colorBlack));
+        //        tView.setAutoSizeTextTypeWithDefaults();
         rView=tView;
         return rView;
     }
