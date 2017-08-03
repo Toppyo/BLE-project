@@ -2,6 +2,8 @@ package com.panotech.ble_master_system;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.text.TextPaint;
 import android.view.Gravity;
 import android.view.View;
@@ -11,6 +13,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.panotech.ble_master_system.CheckActivity.COL;
 
 /**
  * Created by sylar on 2017/07/19.
@@ -57,6 +61,7 @@ public class TestTableView extends TableLayout {
         this.removeAllViews();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public int addRow(String[] st1, String[] st2)//添加一行，返回行数。如果objects的数目小于m_ColumnN则返回0。
     {
         if(st1==null) return 0;
@@ -75,18 +80,19 @@ public class TestTableView extends TableLayout {
 
         for(i=0;i<m_ColumnN;i++)
         {
-            if(st2[i] != null) v1=createCellView(st1[i], st2[i]);
-            if(v1 == null) v1=new View(getContext());
-            v1.setPadding(5,5,5,5);
+            if (st2[i] != null) v1 = createCellView(st1[i], st2[i]);
+            if (v1 == null) v1 = new View(getContext());
+            v1.setPadding(10, 10, 10, 10);
             CRow.addView(v1);
             CRowViews.add(v1);
-            //for demo
-            if(i == 1){
+            if(i == (COL / 2 - 1)){
                 v2 = createBlankView();
                 CRow.addView(v2);
                 CRowViews.add(v2);
             }
+            //for demo
         }
+        CRow.setPadding(0,10,0,10);
         this.addView(CRow);
 
         return nRows;
@@ -108,6 +114,7 @@ public class TestTableView extends TableLayout {
         TextView tView=new TextView(getContext());
         tView.setGravity(Gravity.CENTER);
         tView.setText(st1 + "\n" + st2);
+        tView.setTextSize(20);
         TextPaint paint = tView.getPaint();
         paint.setFakeBoldText(true);
         tView.setTextColor(getResources().getColor(R.color.colorBlack));
@@ -119,7 +126,7 @@ public class TestTableView extends TableLayout {
     protected View createBlankView(){
         View rView = null;
         TextView textView = new TextView(getContext());
-        textView.setText("      ");
+        textView.setText("   ");
         rView = textView;
         return rView;
     }

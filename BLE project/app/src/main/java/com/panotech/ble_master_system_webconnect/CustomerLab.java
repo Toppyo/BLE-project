@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.UUID;
 
-import static com.panotech.ble_master_system_webconnect.SeatNumber.CheckSeat;
+import static com.panotech.ble_master_system_webconnect.SeatNumber.CheckSeat4;
+import static com.panotech.ble_master_system_webconnect.SeatNumber.CheckSeat2;
 
 /**
  * Created by sylar on 2017/07/14.
@@ -78,7 +79,7 @@ public class CustomerLab {
             Customer customer = new Customer();
             customer.setSeatNumber(i+1);
             customer.setName(randomName());
-            customer.setSeat(CheckSeat(i+1));
+            customer.setSeat(CheckSeat2(i+1));
             customer.setAppear(randomSex(customer.getName()));
             customer.setDistance(randomDistance());
             mCustomers.add(customer);         //fuck you!!!!!!!

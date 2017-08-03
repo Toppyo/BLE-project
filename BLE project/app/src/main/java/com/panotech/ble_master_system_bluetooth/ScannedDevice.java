@@ -1,7 +1,9 @@
 package com.panotech.ble_master_system_bluetooth;
 
 import android.bluetooth.BluetoothDevice;
+import android.util.Log;
 
+import com.panotech.ble_master_system.Signal;
 import com.panotech.ble_master_system_utils.DateUtil;
 import com.panotech.ble_master_system_utils.LimitedSizeQueue;
 import com.panotech.ble_master_system_webconnect.Customer;
@@ -21,7 +23,8 @@ public class ScannedDevice {
     private byte[] mScanRecord;
     private BLE mBLE;
     private long mLastUpdatedMs;
-    private Double aveRssi;
+    private long mLogLastUpdatedMs = 0;
+    private Double aveAccuracy;
     private UUID mUUID;
     private String mName, mSeat, mAppear;
 
@@ -59,7 +62,12 @@ public class ScannedDevice {
     }
 
     public int getRssi() {
-        return mRssi;
+        if(rssiStore.size() != 0) {
+            return rssiStore.getYongest().rssi;
+        }
+        else {
+            return 0;
+        }
     }
 
     public void setRssi(int rssi) {
@@ -82,9 +90,20 @@ public class ScannedDevice {
         return ScannedDevice.asHex(mScanRecord);
     }
 
+    public Signal getSignal(){
+        return rssiStore.getYongest();
+    }
     public void setScanRecord(byte[] scanRecord) {
         mScanRecord = scanRecord;
         checkIBeacon();
+    }
+
+    public long getLogLastUpdatedMs() {
+        return mLogLastUpdatedMs;
+    }
+
+    public void setLogLastUpdatedMs(long logLastUpdatedMs) {
+        mLogLastUpdatedMs = logLastUpdatedMs;
     }
 
     public BLE getBLE() {
@@ -99,9 +118,14 @@ public class ScannedDevice {
         mDisplayName = displayName;
     }
 
-    public Double getAveRssi() {
-        aveRssi = calculateAveRssi(rssiStore);
-        return aveRssi;
+//    public Double getAveRssi() {
+//        aveRssi = calculateAveRssi(rssiStore);
+//        return aveRssi;
+//    }
+
+    public Double getAveAccuracy(){
+        aveAccuracy = calculateDistance(rssiStore);
+        return aveAccuracy;
     }
 
     public String getName() {
@@ -163,14 +187,47 @@ public class ScannedDevice {
         return sb.toString();
     }
 
-    public LimitedSizeQueue<Integer> rssiStore = new LimitedSizeQueue(5);
+    public LimitedSizeQueue<Signal> rssiStore = new LimitedSizeQueue(15);
 
-    private Double calculateAveRssi(LimitedSizeQueue<Integer> rssiStore){
-        int i = rssiStore.size();
-        int sum = 0;
-        for(int rssi : rssiStore){
-            sum += rssi;
+    private Double calculateDistance(LimitedSizeQueue<Signal> rssiStore){
+        StringBuilder sb = new StringBuilder();
+        Long now = System.currentTimeMillis();
+        int i=1;
+        if(rssiStore.size() != 0) {
+            i = rssiStore.size();
         }
+        double sum = 0.;
+        for(Signal signal : rssiStore){
+            if (now < signal.timestamp + 3200) {
+                sb.append(signal.rssi + "now  ");
+                double accuracy = BLE.calculateAccuracy(getBLE().getTxPower(), signal.rssi);
+                Log.i("Accuracy calculated", Double.toString(accuracy));
+                sum += accuracy;
+            } else {
+                sb.append(signal.rssi + "past ");
+//                sum += BLE.STANDARD_DISTANCE_MAP.get(BLE.STANDARD_FAR).get(0);
+                i--;
+            }
+        }
+        String logstr = "";
+        for(Signal signal : rssiStore) {
+            logstr += DateUtil.get_yyyyMMddHHmmssSSS(signal.timestamp) + "      "+ signal.rssi + "___";
+        }
+        Log.d("properties saved:", logstr);
+        sb.append(100.0);
+        Log.i("caculatingAccuracy", sb.toString());
+        Log.i("aveaccuracy", Double.toString(sum*(1.0)/i));
+        if(i == 0) return 100.;
         return sum*(1.0)/i;
+    }
+
+    public String timeToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(DateUtil.get_yyyyMMddHHmmssSSS(mLastUpdatedMs));
+        return sb.toString();
+    }
+
+    public String showScanData(){
+        return BLE.bytesToHex(mScanRecord);
     }
 }

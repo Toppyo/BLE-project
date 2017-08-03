@@ -8,13 +8,17 @@
         android:id="@+id/linear_layout_check_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="30dp"
-            android:background="@color/colorSkyBlue"
-            android:text="@string/check_title"/>
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center"-->
+            <!--android:textSize="30dp"-->
+            <!--android:background="@color/colorSkyBlue"-->
+            <!--android:text="@string/check_title"/>-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/check_big" />
     </LinearLayout>
 
     <LinearLayout

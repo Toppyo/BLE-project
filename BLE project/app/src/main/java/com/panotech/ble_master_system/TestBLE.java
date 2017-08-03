@@ -1,5 +1,6 @@
 package com.panotech.ble_master_system;
 
+import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -7,6 +8,8 @@ import android.bluetooth.BluetoothManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,9 +17,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.panotech.ble_master_system_bluetooth.CommonData;
 import com.panotech.ble_master_system_bluetooth.DeviceAdapter;
 import com.panotech.ble_master_system_bluetooth.ScannedDevice;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import static com.panotech.ble_master_system_bluetooth.ScannedDevice.asHex;
@@ -36,10 +41,26 @@ public class TestBLE extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        try {
+            if (CommonData.isOver()) {
+                return;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         setContentView(R.layout.test_ble_activity);
         mScanning = false;
         mCheckPeopleTextView = (TextView)findViewById(R.id.test_check_people);
         mRefreshButton = (Button)findViewById(R.id.btn_test_refresh);
+
+
+
+        if(ContextCompat.checkSelfPermission(TestBLE.this,"Manifest.permission.ACCESS_COARSE_LOCATION")
+                != PackageManager.PERMISSION_GRANTED)
+        {
+            //注意第二个参数没有双引号
+            ActivityCompat.requestPermissions(TestBLE.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},1);
+        }
 
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
             Toast.makeText(this, "No support for BLE on this device", Toast.LENGTH_SHORT).show();

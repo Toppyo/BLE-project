@@ -2,6 +2,7 @@ package com.panotech.ble_master_system_bluetooth;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.panotech.ble_master_system.R;
+import com.panotech.ble_master_system.Signal;
+import com.panotech.ble_master_system.Visitors;
 import com.panotech.ble_master_system_utils.DateUtil;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import static com.panotech.ble_master_system_bluetooth.BLE.calculateAccuracy;
@@ -59,9 +63,8 @@ public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
                 ibeaconInfo.setText(/*res.getString(R.string.label_ble)*/"This is my BLE" + "\n"
                         + item.getBLE().toString());
                 if(rssi != null){
-                    double a = item.getAveRssi();
-                    double b = calculateAccuracy(item.getBLE().txPower, a);
-                    rssi.setText(calculateDistance(b));
+                    double a = item.getAveAccuracy();
+                    rssi.setText(calculateDistance(a));
                 }
             } else {
                 ibeaconInfo.setText(/*res.getString(R.string.label_not_ble)*/ "This is not my BLE");
@@ -80,17 +83,29 @@ public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
      */
     public String update(BluetoothDevice newDevice, int rssi, byte[] scanRecord) {
         if ((newDevice == null) || (newDevice.getAddress() == null)) {
+            Log.i("update failed", "1111111111111111111111111111");
             return "";
         }
         long now = System.currentTimeMillis();
 
         boolean contains = false;
+        DecimalFormat df = new DecimalFormat("#.00");
         for (ScannedDevice device : mList) {
             if (newDevice.getAddress().equals(device.getDevice().getAddress())) {
                 contains = true;
                 // update
 //                device.setRssi(rssi);
-                device.rssiStore.add(rssi);
+                Signal signal = new Signal();
+                signal.timestamp = System.currentTimeMillis();
+                signal.rssi = rssi;
+                device.rssiStore.add(signal);
+                if(device.getBLE() != null) {
+                    String logData = device.getBLE().toString() + " Rssi=" + String.valueOf(rssi)
+                            + "  DistanceQueueAve=" + String.valueOf(df.format(device.getAveAccuracy()))
+                            + " DDM:" + device.showScanData().substring(0, 59) + "  " + device.timeToString();
+                    Log.i("DALOG", logData);
+                    CommonData.TestLogQueue.add(logData);
+                }
                 device.setLastUpdatedMs(now);
                 device.setScanRecord(scanRecord);
                 break;
@@ -98,7 +113,11 @@ public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
         }
         if (!contains) {
             // add new BluetoothDevice
-            mList.add(new ScannedDevice(newDevice, rssi, scanRecord, now));
+            ScannedDevice device = new ScannedDevice(newDevice, rssi, scanRecord, now);
+            if(device.getBLE() != null) {
+                Log.i("UpdatedDevice---", newDevice.getAddress());
+                mList.add(device);
+            }
         }
 
         // sort by RSSI
@@ -133,32 +152,22 @@ public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
         if (mList != null) {
             totalCount = mList.size();
             for (ScannedDevice device : mList) {
-                if (device.getBLE() != null) {
+                totalCount++;
+                if(Visitors.visitormap.containsKey(Integer.toString(device.getBLE().getMajor()))
+                        && Visitors.visitormap.get(Integer.toString(device.getBLE().getMajor())).containsKey(Integer.toString(device.getBLE().getMinor()))){
                     BLECount++;
                 }
-                else{
-                    mList.remove(device);
-                }
             }
+            Log.i("totalCount", Integer.toString(totalCount));
         }
 
         notifyDataSetChanged();
-
-        String summary = Integer.toString(BLECount) + ":" + Integer.toString(totalCount);
+        String summary = Integer.toString(BLECount);
         return summary;
     }
 
     public List<ScannedDevice> getList() {
         return mList;
-    }
-
-    public double shorttenDouble(double x){
-        int i;
-        x *= 100;
-        i = (int)x;
-        double y = (double)i;
-        double z = y/100;
-        return z;
     }
 
     private String calculateDistance(Double accuracy) {
@@ -167,20 +176,20 @@ public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
             int d = calculateProximity(accuracy);
             switch (d) {
                 case 1:
-                    sb.append("NEAR");
+                    sb.append("圏内");
                     break;
                 case 2:
-                    sb.append("MIDDLE");
+                    sb.append("近隣");
                     break;
-                case 3:
-                    sb.append("FAR");
-                    break;
+//                case 3:
+//                    sb.append("FAR");
+//                    break;
                 case 0:
-                    sb.append("UNKNOWN");
+                    sb.append("圏外");
                     break;
             }
         } else {
-            sb.append("UNKNOWN");
+            sb.append("圏外");
         }
         return sb.toString();
     }

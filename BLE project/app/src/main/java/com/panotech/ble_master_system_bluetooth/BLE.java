@@ -3,9 +3,15 @@ package com.panotech.ble_master_system_bluetooth;
 import android.util.Log;
 
 import com.panotech.ble_master_system.R;
+import com.panotech.ble_master_system.Visitor;
+import com.panotech.ble_master_system.Visitors;
 import com.panotech.ble_master_system_utils.LimitedSizeQueue;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Created by sylar on 2017/07/17.
@@ -17,6 +23,18 @@ public class BLE {
     public static final int PROXIMITY_FAR = 3;
     public static final int PROXIMITY_UNKNOWN = 0;
 
+
+    public static final Integer STANDARD_INNER=0;
+    public static final Integer STANDARD_NEAR=1;
+    public static final Integer STANDARD_FAR=2;
+
+    public static Map<Integer, ArrayList<Double>> STANDARD_DISTANCE_MAP = new HashMap<Integer, ArrayList<Double>>();
+    static {
+        STANDARD_DISTANCE_MAP.put(STANDARD_INNER, new ArrayList<Double>(Arrays.asList(5.0, 30.0)));//内
+        STANDARD_DISTANCE_MAP.put(STANDARD_NEAR, new ArrayList<Double>(Arrays.asList(10.0, 50.0)));//近
+        STANDARD_DISTANCE_MAP.put(STANDARD_FAR, new ArrayList<Double>(Arrays.asList(15.0, 50.0)));//遠
+    }
+
     final private static char[] hexArray = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
     private static final String TAG = "BLE";
     protected String proximityUuid;
@@ -27,7 +45,18 @@ public class BLE {
     protected int rssi;
     protected int txPower;
     protected Double runningAverageRssi = null;
+    protected int sd; //for test
     protected String Distance;
+
+    public Visitor getVisitor() {
+        return visitor;
+    }
+
+    public void setVisitor(Visitor visitor) {
+        this.visitor = visitor;
+    }
+
+    protected Visitor visitor;
 
     public int getMajor() {
         return major;
@@ -85,12 +114,12 @@ public class BLE {
 //    }
 //...............
 
-    protected static double calculateAccuracy(int txPower, double rssi) {
+    public static double calculateAccuracy(int txPower, double rssi) {
         if(rssi == 0){
             return 100.0;
         }
         else{
-            return Math.pow((txPower - rssi)/20, 10);
+            return Math.pow(10, (txPower - rssi)/20);
         }
     }
 
@@ -111,8 +140,10 @@ public class BLE {
             if (((int)scanData[startByte] & 0xff) == 0x4c &&
                     ((int)scanData[startByte+1] & 0xff) == 0x00 &&
                     ((int)scanData[startByte+2] & 0xff) == 0x02 &&
-                    ((int)scanData[startByte+3] & 0xff) == 0x15) {
-                // yes!  This is an iBeacon
+                    ((int)scanData[startByte+3] & 0xff) == 0x15
+//                    && ((int)scanData[startByte-1] & 0xff) == 0xff
+)  {
+                // yes!  This is a BLE
                 patternFound = true;
                 break;
             }
@@ -140,6 +171,7 @@ public class BLE {
 
         BLE ble = new BLE();
 
+        ble.sd = (int)scanData[startByte-1] & 0xff;
         ble.major = (scanData[startByte+20] & 0xff) * 0x100 + (scanData[startByte+21] & 0xff);
         ble.minor = (scanData[startByte+22] & 0xff) * 0x100 + (scanData[startByte+23] & 0xff);
         ble.txPower = (int)scanData[startByte+24]; // this one is signed
@@ -173,7 +205,7 @@ public class BLE {
         return ble;
     }
 //转化byte到hex
-    private static String bytesToHex(byte[] bytes) {
+    public static String bytesToHex(byte[] bytes) {
         char[] hexChars = new char[bytes.length * 2];
         int v;
         for ( int j = 0; j < bytes.length; j++ ) {
@@ -186,17 +218,17 @@ public class BLE {
     //*********
 
     //实际重点测试更改部分 计算圈外圈内的判定公式************************************************:
-    protected static int calculateProximity(double accuracy) {
-        if (accuracy > 80.0) {
+    public static int calculateProximity(Double accuracy) {
+        if (accuracy > STANDARD_DISTANCE_MAP.get(Visitors.getBle_standard()).get(1)) {
             return PROXIMITY_UNKNOWN;
             // is this correct?  does proximity only show unknown when accuracy is negative?  I have seen cases where it returns unknown when
             // accuracy is -1;
         }
-        if (accuracy < 80.0 && accuracy > 50.0) {
-            return BLE.PROXIMITY_FAR;
-        }
+//        if (accuracy < STANDARD_DISTANCE_MAP.get(Visitors.getBle_standard()).get(2) && accuracy > STANDARD_DISTANCE_MAP.get(Visitors.getBle_standard()).get(1)) {
+//            return BLE.PROXIMITY_FAR;
+//        }
         // forums say 3.0 is the near/far threshold, but it looks to be based on experience that this is 4.0
-        if (accuracy < 10.0) {
+        if (accuracy < STANDARD_DISTANCE_MAP.get(Visitors.getBle_standard()).get(0)) {
             return BLE.PROXIMITY_NEAR;
         }
         // if it is > 4.0 meters, call it far
@@ -254,6 +286,7 @@ public class BLE {
         sb.append(" Major=").append(this.major);
         sb.append(" Minor=").append(this.minor);
         sb.append(" TxPower=").append(this.txPower);
+//        sb.append(" sd=").append(this.sd);
 
         return sb.toString();
     }

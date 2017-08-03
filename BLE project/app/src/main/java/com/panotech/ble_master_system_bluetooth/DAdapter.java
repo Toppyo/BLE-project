@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.panotech.ble_master_system.R;
+import com.panotech.ble_master_system.Signal;
 import com.panotech.ble_master_system_utils.PropertyUtil;
 
 import java.io.FileOutputStream;
@@ -66,9 +67,8 @@ public class DAdapter extends ArrayAdapter<ScannedDevice> {
 
             tMajor.setText(Integer.toString(item.getBLE().getMajor()));
             tMinor.setText(Integer.toString(item.getBLE().getMinor()));
-            double a = item.getAveRssi();
-            double b = calculateAccuracy(item.getBLE().txPower, a);
-            tDistance.setText(calculateDistance(b));
+            double a = item.getAveAccuracy();
+            tDistance.setText(calculateDistance(a));
             tName.setText(item.getName());
             tSeat.setText(item.getSeat());
             tAppear.setText(item.getAppear());
@@ -128,7 +128,10 @@ public class DAdapter extends ArrayAdapter<ScannedDevice> {
                 contains = true;
                 // update
 //                device.setRssi(rssi);
-                device.rssiStore.add(rssi);
+                Signal signal = new Signal();
+                signal.timestamp = System.currentTimeMillis();
+                signal.rssi = rssi;
+                device.rssiStore.add(signal);
                 device.setLastUpdatedMs(now);
                 device.setScanRecord(scanRecord);
                 break;

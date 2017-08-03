@@ -20,8 +20,8 @@
     -->
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@mipmap/widget"
+        android:label="BLE"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -33,21 +33,25 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"
-            android:label="@string/app_name"/>
+            android:label=""
+            android:exported="true"/>
         <activity android:name=".CheckActivity"
-            android:label="@string/app_name"
+            android:label=""
             android:exported="true"/>
         <activity android:name=".TestBLE"
-            android:label="@string/app_name"
+            android:label=""
             android:exported="true"/>
         <activity android:name=".CheckAbsenceActivity"
-            android:label="@string/app_name"
+            android:label=""
             android:exported="true"/>
         <activity android:name=".SettingsActivity"
-            android:label="@string/app_name"/>
+            android:label=""/>
         <activity android:name=".TestSettingsActivity"
-            android:label="@string/app_name"
+            android:label=""
             android:windowSoftInputMode="adjustPan"
+            android:exported="true"/>
+        <activity android:name=".TestShowLogActivity"
+            android:label=""
             android:exported="true"/>
     </application>
 

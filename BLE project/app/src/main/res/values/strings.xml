@@ -8,8 +8,9 @@
     <string name="action_sign_in_short">送信</string>
     <string name="user_label">ユーザID</string>
     <string name="password_label">パスワード</string>
-    <string name="login_ok">ロッグイン成功した！</string>
-    <string name="login_failed">ロッグイン失敗した！</string>
+    <string name="login_ok">ログインに成功した！</string>
+    <string name="login_failed">ログインに失敗した！</string>
+    <string name="save_ok">保存しました！</string>
 
     <!-- Welcome Strings -->
     <string name="welcome_title">SSS点呼システム へ ようこそ!</string>
@@ -27,10 +28,11 @@
     <string name="list_title">不在者ピックアップ</string>
     <string name="list_seat">席番</string>
     <string name="list_name">氏名</string>
-    <string name="list_appear">容姿</string>
+    <string name="list_appear">特徴</string>
     <string name="list_distance">近接度</string>
 
     <!-- Settings Strings -->
+    <string name="settings_startscan">スキャンしています！</string>
     <string name="settings_title">登録・設定</string>
     <string name="settings_operation">対象設定</string>
     <string name="settings_newdevice">新規</string>
@@ -40,8 +42,17 @@
     <string name="settings_minor">Minor</string>
     <string name="settings_name">氏名</string>
     <string name="settings_seat">席番</string>
-    <string name="settings_Appear">容姿</string>
-    <string name="settings_distance">近接度</string>
+    <string name="settings_Appear">特徴</string>
+    <string name="settings_distance1">①近接度</string>
+    <string name="settings_distance2">②近接度</string>
+    <string name="settings_distance3">③近接度</string>
+    <string name="settings_distance4">④近接度</string>
+    <string name="settings_distance5">⑤近接度</string>
+    <string name="settings_distance6">⑥近接度</string>
+    <string name="settings_distance7">⑦近接度</string>
+    <string name="settings_distance8">⑧近接度</string>
+    <string name="settings_distance9">⑨近接度</string>
+    <string name="settings_distance10">⑩近接度</string>
 
     <!-- Bluetooth Strings -->
     <string name="dump_failed">Dump Failed.</string>
@@ -61,4 +72,37 @@
     <string name="distance_middle">MIDDLE</string>
     <string name="distance_far">FAR</string>
     <string name="distance_unknown">UNKNOWN</string>
+
+    <string-array name="setting">
+        <item>内</item>
+        <item>近</item>
+        <!--<item>遠</item>-->
+    </string-array>
+
+    <string-array name="seats">
+        <item></item>
+        <item>A-1</item>
+        <item>A-2</item>
+        <item>A-3</item>
+        <item>A-4</item>
+        <item>A-5</item>
+        <item>B-1</item>
+        <item>B-2</item>
+        <item>B-3</item>
+        <item>B-4</item>
+        <item>B-5</item>
+    </string-array>
+
+    <string-array name="feature">
+        <item></item>
+        <item>老男</item>
+        <item>中男</item>
+        <item>若男</item>
+        <item>子男</item>
+        <item>老女</item>
+        <item>中女</item>
+        <item>若女</item>
+        <item>子女</item>
+        <item>海外</item>
+    </string-array>
 </resources>

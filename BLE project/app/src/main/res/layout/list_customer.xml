@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
 
     <TextView
         android:id="@+id/list_seat_number"
@@ -9,8 +10,9 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="5dp"
-        android:textSize="20sp"
+        android:layout_marginLeft="15dp"
+        android:textSize="14sp"
+        android:textColor="@color/colorBlack"
         android:text="Seat"/>
 
     <TextView
@@ -20,7 +22,8 @@
         android:layout_weight="2"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="5dp"
-        android:textSize="20sp"
+        android:textSize="14sp"
+        android:textColor="@color/colorBlack"
         android:text="Name"/>
 
     <TextView
@@ -29,7 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_marginLeft="5dp"
-        android:textSize="20sp"
+        android:textSize="14sp"
+        android:textColor="@color/colorBlack"
         android:text="Appear"/>
 
     <TextView
@@ -38,7 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_marginLeft="5dp"
-        android:textSize="20sp"
+        android:textSize="14sp"
+        android:textColor="@color/colorBlack"
         android:text="Distance"/>
 
 </LinearLayout>
