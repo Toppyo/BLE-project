@@ -1,7 +1,5 @@
 package com.panotech.ble_master_system_bluetooth;
 
-import android.text.format.Time;
-
 import com.panotech.ble_master_system_utils.LimitedSizeQueue;
 
 import java.text.ParseException;
@@ -19,13 +17,13 @@ public class CommonData {
 
     public static int WholePeople = 0;
 
-    public static final long RefreshTime = 3000;
+    public static final long RefreshTime = 7000;
 
     public static boolean isOver() throws ParseException {
 
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-        Date curDate    =   new    Date(System.currentTimeMillis());//获取当前时间
+        Date curDate = new Date(System.currentTimeMillis());//获取当前时间
         String date1="20170930";
 
         Date beginTime=formatter.parse(date1);

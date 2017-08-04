@@ -12,8 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.panotech.ble_master_system.R;
-import com.panotech.ble_master_system.Signal;
-import com.panotech.ble_master_system_utils.PropertyUtil;
+import com.panotech.ble_master_system_utils.Signal;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,14 +22,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
 
-import static com.panotech.ble_master_system_bluetooth.BLE.calculateAccuracy;
 import static com.panotech.ble_master_system_bluetooth.BLE.calculateProximity;
-import static com.panotech.ble_master_system_utils.PropertyUtil.APPEARNUM;
-import static com.panotech.ble_master_system_utils.PropertyUtil.MAJORNUM;
-import static com.panotech.ble_master_system_utils.PropertyUtil.MINORNUM;
-import static com.panotech.ble_master_system_utils.PropertyUtil.NAMEMUM;
-import static com.panotech.ble_master_system_utils.PropertyUtil.SEATNUM;
-import static com.panotech.ble_master_system_utils.PropertyUtil.UUIDNUM;
 
 /**
  * Created by sylar on 2017/07/23.
@@ -41,6 +33,12 @@ public class DAdapter extends ArrayAdapter<ScannedDevice> {
     private LayoutInflater mInflater;
     private int mResId;
     int mCurrentTouchedIndex = -1;
+    public static final int UUIDNUM   = 1;
+    public static final int MAJORNUM  = 2;
+    public static final int MINORNUM  = 3;
+    public static final int NAMEMUM   = 4;
+    public static final int SEATNUM   = 5;
+    public static final int APPEARNUM = 6;
 
     public DAdapter(Context context, int resId, List<ScannedDevice> deviceList) {
         super(context, resId, deviceList);

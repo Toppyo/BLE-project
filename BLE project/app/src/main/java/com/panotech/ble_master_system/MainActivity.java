@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,24 +20,20 @@ import android.widget.Toast;
 import com.panotech.ble_master_system_bluetooth.CommonData;
 import com.panotech.ble_master_system_bluetooth.DeviceAdapter;
 import com.panotech.ble_master_system_bluetooth.ScannedDevice;
-import com.panotech.ble_master_system_utils.DateUtil;
+import com.panotech.ble_master_system_webconnect.Visitors;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.panotech.ble_master_system.TestBLE.REQUEST;
 import static com.panotech.ble_master_system_bluetooth.ScannedDevice.asHex;
 
 
 public class MainActivity extends Activity {
     private Button mButtonCheck, mButtonCheckAbsence, mButtonSettings, mButtonBLETest;
     private TextView mTextViewTourName, mTextViewPeopleCounting, mTextViewAppointmentTime;
-    public static String CSVFILE;
     private BluetoothAdapter mBluetoothAdapter;
-
-    //@Override
-    //public View onCreateView(LayoutInflater inflater, ViewGroup container, "")
+    public static final int REQUEST = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,14 +76,13 @@ public class MainActivity extends Activity {
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
             Toast.makeText(this, "No support for BLE on this device", Toast.LENGTH_SHORT).show();
         } else {
-            BluetoothManager manager = (BluetoothManager) getSystemService(BLUETOOTH_SERVICE);
-            //获得蓝牙适配器
-            mBluetoothAdapter = manager.getAdapter();
             if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
                 Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivityForResult(intent, REQUEST);
             }
-
+            BluetoothManager manager = (BluetoothManager) getSystemService(BLUETOOTH_SERVICE);
+            //获得蓝牙适配器
+            mBluetoothAdapter = manager.getAdapter();
         }
 
         try {
@@ -116,7 +110,7 @@ public class MainActivity extends Activity {
         mButtonSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent3 = new Intent(MainActivity.this, TestSettingsActivity.class);
+                Intent intent3 = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent3);
             }
         });
@@ -128,37 +122,6 @@ public class MainActivity extends Activity {
                 startActivity(intent4);
             }
         });
-
-        //final Handler handler = new Handler(){
-            //@Override
-            //public void handleMessage(Message msg){
-                //super.handleMessage(msg);
-                //if(msg.what == 1){
-//                    mTextViewTourName = (TextView)findViewById(R.id.tour_input);
-//                    mTextViewPeopleCounting = (TextView)findViewById(R.id.people_counting);
-//                    mTextViewAppointmentTime = (TextView)findViewById(R.id.appointment_time);
-//                    mTextViewTourName.setText("ぶらり京都観光バスの旅:No1");
-//                    mTextViewPeopleCounting.setText("36人");
-//                    mTextViewAppointmentTime.setText("8時間");
-                //}
-            //}
-        //};
-
-        /*final Thread updateUI = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Message message = new Message();
-                message.what = 1;
-                handler.sendMessage(message);
-            }
-        });
-
-        mButtonMainFresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateUI.start();
-            }
-        });*/
 
     }
 
@@ -175,22 +138,7 @@ public class MainActivity extends Activity {
                     Visitors.settingsMap.put("summary", summary);
                     List<ScannedDevice> list = CommonData.mDeviceAdapter.getList();//addDevice(device);
                     CommonData.mDeviceAdapter.notifyDataSetChanged();
-                    //For test log using
-//                    long now = System.currentTimeMillis();
-//                    ScannedDevice scannedDevice = new ScannedDevice(device, rssi, scanRecord, now);
-//                    if(scannedDevice.getBLE() != null){
-//                        String logData = scannedDevice.getBLE().toString() + "  " + rssi + "  " + scannedDevice.timeToString();
-//                        CommonData.TestLogQueue.add(logData);
-//                        Log.i("LOGDATA", logData);
-//                    }
-//                    for(ScannedDevice device : list){
-//                        if(now - device.getLogLastUpdatedMs() > 1000){
-//                            String logData = "******" + device.getBLE().toString() + "  AveDistance:"
-//                                    + String.valueOf(device.getAveAccuracy()) + "  " + DateUtil.get_yyyyMMddHHmmssSSS(now);
-//                            device.setLogLastUpdatedMs(now);
-//                            CommonData.TestLogQueue.add(logData);
-//                        }
-//                    }
+
                 }
             });
         }

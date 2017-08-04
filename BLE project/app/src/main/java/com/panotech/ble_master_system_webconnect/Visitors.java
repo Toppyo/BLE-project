@@ -1,4 +1,4 @@
-package com.panotech.ble_master_system;
+package com.panotech.ble_master_system_webconnect;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +36,5 @@ public class Visitors {
     public static void clearBleStandard(){
         setBle_standard(0);
     }
-
 
 }

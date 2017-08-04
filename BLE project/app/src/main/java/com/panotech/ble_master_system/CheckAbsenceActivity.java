@@ -5,18 +5,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.panotech.ble_master_system_bluetooth.BLE;
 import com.panotech.ble_master_system_bluetooth.CommonData;
-import com.panotech.ble_master_system_bluetooth.DeviceAdapter;
 import com.panotech.ble_master_system_bluetooth.PickupAdapter;
 import com.panotech.ble_master_system_bluetooth.ScannedDevice;
+import com.panotech.ble_master_system_webconnect.Visitors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +28,7 @@ public class CheckAbsenceActivity extends Activity {
     private PickupAdapter mPickupAdapter;
     private Handler mHandler;
     private int PeopleCount = 0;
+    private Timer mTimer;
 
     @SuppressLint("HandlerLeak")
     @Override
@@ -46,7 +43,6 @@ public class CheckAbsenceActivity extends Activity {
         mPickupAdapter = new PickupAdapter(this, R.layout.list_customer,
                 new ArrayList<ScannedDevice>());
         PeopleCount = mPickupAdapter.updatePickup(mDevices);
-//        mPickupAdapter.notifyDataSetChanged();
         mListView.setAdapter(mPickupAdapter);
         initCheckUI();
         mHandler = new Handler(){
@@ -55,13 +51,12 @@ public class CheckAbsenceActivity extends Activity {
                 mPickupAdapter.clear();
                 mDevices = updateList(CommonData.mDeviceAdapter.getList());
                 PeopleCount = mPickupAdapter.updatePickup(mDevices);
-//                mPickupAdapter.notifyDataSetChanged();
                 mListView.setAdapter(mPickupAdapter);
                 initCheckUI();
             }
         };
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
+        mTimer = new Timer();
+        mTimer.schedule(new TimerTask() {
             @Override
             public void run() {
                 mHandler.sendEmptyMessage(0);
@@ -87,6 +82,15 @@ public class CheckAbsenceActivity extends Activity {
             }
         }
         return devices;
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        if(mTimer != null) {
+            mTimer.cancel();
+            mTimer = null;
+        }
     }
 }
 

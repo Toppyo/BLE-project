@@ -10,14 +10,13 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.panotech.ble_master_system.R;
-import com.panotech.ble_master_system.Signal;
-import com.panotech.ble_master_system.Visitors;
+import com.panotech.ble_master_system_utils.Signal;
+import com.panotech.ble_master_system_webconnect.Visitors;
 import com.panotech.ble_master_system_utils.DateUtil;
 
 import java.text.DecimalFormat;
 import java.util.List;
 
-import static com.panotech.ble_master_system_bluetooth.BLE.calculateAccuracy;
 import static com.panotech.ble_master_system_bluetooth.BLE.calculateProximity;
 
 /**
@@ -25,7 +24,6 @@ import static com.panotech.ble_master_system_bluetooth.BLE.calculateProximity;
  */
 
 public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
-    private static final String PREFIX_RSSI = "RSSI:";
     private static final String PREFIX_LASTUPDATED = "Last Udpated:";
     private List<ScannedDevice> mList;
     private LayoutInflater mInflater;
@@ -75,12 +73,6 @@ public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
         return convertView;
     }
 
-    /**
-     * add or update BluetoothDevice List
-     *
-     * 新扫描的BLE + 新的rssi + 接受到的蓝牙包数据
-     * 返回数据 ex. "BLE:3 (Total:10)"
-     */
     public String update(BluetoothDevice newDevice, int rssi, byte[] scanRecord) {
         if ((newDevice == null) || (newDevice.getAddress() == null)) {
             Log.i("update failed", "1111111111111111111111111111");
@@ -93,8 +85,6 @@ public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
         for (ScannedDevice device : mList) {
             if (newDevice.getAddress().equals(device.getDevice().getAddress())) {
                 contains = true;
-                // update
-//                device.setRssi(rssi);
                 Signal signal = new Signal();
                 signal.timestamp = System.currentTimeMillis();
                 signal.rssi = rssi;
@@ -112,41 +102,12 @@ public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
             }
         }
         if (!contains) {
-            // add new BluetoothDevice
             ScannedDevice device = new ScannedDevice(newDevice, rssi, scanRecord, now);
             if(device.getBLE() != null) {
                 Log.i("UpdatedDevice---", newDevice.getAddress());
                 mList.add(device);
             }
         }
-
-        // sort by RSSI
-//        Collections.sort(mList, new Comparator<ScannedDevice>() {
-//            @Override
-//            public int compare(ScannedDevice lhs, ScannedDevice rhs) {
-//                if(lhs.getBLE() != null && rhs.getBLE() == null){
-//                    return -1;
-//                }
-//                else if(lhs.getBLE() == null && rhs.getBLE() != null){
-//                    return 1;
-//                }
-//                else {
-//                    if (lhs.getRssi() == 0) {
-//                        return 1;
-//                    } else if (rhs.getRssi() == 0) {
-//                        return -1;
-//                    }
-//                    if (lhs.getRssi() > rhs.getRssi()) {
-//                        return -1;
-//                    } else if (lhs.getRssi() < rhs.getRssi()) {
-//                        return 1;
-//                    }
-//                    return 0;
-//                }
-//            }
-//        });
-
-        // create summary
         int totalCount = 0;
         int BLECount = 0;
         if (mList != null) {
@@ -194,7 +155,4 @@ public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
         return sb.toString();
     }
 
-
-
-//    Double.toString(shorttenDouble(item.getBLE().getAccuracy()))
 }

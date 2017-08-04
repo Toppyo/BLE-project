@@ -47,6 +47,9 @@ public class LoginActivity extends Activity {
                         Intent login = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(login);
                     }
+                    else{
+                        Toast.makeText(getApplicationContext(), getText(R.string.login_failed), Toast.LENGTH_LONG).show();
+                    }
                 }catch(Exception e){
                     Toast.makeText(getApplicationContext(), getText(R.string.login_failed), Toast.LENGTH_LONG).show();
                 }

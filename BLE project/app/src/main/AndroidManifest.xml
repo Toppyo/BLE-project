@@ -38,15 +38,10 @@
         <activity android:name=".CheckActivity"
             android:label=""
             android:exported="true"/>
-        <activity android:name=".TestBLE"
-            android:label=""
-            android:exported="true"/>
         <activity android:name=".CheckAbsenceActivity"
             android:label=""
             android:exported="true"/>
         <activity android:name=".SettingsActivity"
-            android:label=""/>
-        <activity android:name=".TestSettingsActivity"
             android:label=""
             android:windowSoftInputMode="adjustPan"
             android:exported="true"/>

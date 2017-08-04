@@ -8,10 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.panotech.ble_master_system.R;
-import com.panotech.ble_master_system.Visitor;
-import com.panotech.ble_master_system.Visitors;
+import com.panotech.ble_master_system_webconnect.Visitors;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -33,13 +31,11 @@ public class PickupAdapter extends ArrayAdapter<ScannedDevice> {
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // If we weren't given a view, inflate one
         ScannedDevice device = getItem(position);
 
         if (convertView == null) {
             convertView = mInflater.inflate(mResId, null);
         }
-        // Configure the view for this PickupCustomer
         String major = Integer.toString(device.getBLE().getMajor());
         String minor = Integer.toString(device.getBLE().getMinor());
         String name = Visitors.visitormap.get(major).get(minor).name;
@@ -69,7 +65,6 @@ public class PickupAdapter extends ArrayAdapter<ScannedDevice> {
                 PeopleCount++;
             }
         }
-        // sort by RSSI
         Collections.sort(mList, new Comparator<ScannedDevice>() {
             @Override
             public int compare(ScannedDevice lhs, ScannedDevice rhs) {
@@ -122,9 +117,6 @@ public class PickupAdapter extends ArrayAdapter<ScannedDevice> {
                 case 2:
                     sb.append("近隣");
                     break;
-//                case 3:
-//                    sb.append("遠方");
-//                    break;
                 case 0:
                     sb.append("圏外");
                     break;

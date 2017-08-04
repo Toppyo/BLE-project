@@ -1,4 +1,4 @@
-package com.panotech.ble_master_system;
+package com.panotech.ble_master_system_utils;
 
 /**
  * Created by qianxun on 2017/07/26.

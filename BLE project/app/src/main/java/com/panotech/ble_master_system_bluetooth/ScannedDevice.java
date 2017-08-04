@@ -3,11 +3,9 @@ package com.panotech.ble_master_system_bluetooth;
 import android.bluetooth.BluetoothDevice;
 import android.util.Log;
 
-import com.panotech.ble_master_system.Signal;
+import com.panotech.ble_master_system_utils.Signal;
 import com.panotech.ble_master_system_utils.DateUtil;
 import com.panotech.ble_master_system_utils.LimitedSizeQueue;
-import com.panotech.ble_master_system_webconnect.Customer;
-import com.panotech.ble_master_system_webconnect.CustomerLab;
 
 import java.util.UUID;
 
@@ -118,11 +116,6 @@ public class ScannedDevice {
         mDisplayName = displayName;
     }
 
-//    public Double getAveRssi() {
-//        aveRssi = calculateAveRssi(rssiStore);
-//        return aveRssi;
-//    }
-
     public Double getAveAccuracy(){
         aveAccuracy = calculateDistance(rssiStore);
         return aveAccuracy;
@@ -152,24 +145,6 @@ public class ScannedDevice {
         mAppear = appear;
     }
 
-    //输出扫描设备的Csv文件   ----db替换----
-    public String toCsv() {
-        StringBuilder sb = new StringBuilder();
-        // DisplayName,MAC Addr,RSSI,Last Updated,iBeacon flag,Proximity UUID,major,minor,TxPower
-        sb.append(mDisplayName).append(",");
-        sb.append(mDevice.getAddress()).append(",");
-        sb.append(mRssi).append(",");
-        sb.append(DateUtil.get_yyyyMMddHHmmssSSS(mLastUpdatedMs)).append(",");
-        if (mBLE == null) {
-            sb.append("false,,0,0,0");
-        } else {
-            sb.append("true").append(",");
-            sb.append(mBLE.toCsv());
-        }
-        return sb.toString();
-    }
-
-    //一种加密 将输入的byte前十位加零间隔排列
     public static String asHex(byte bytes[]) {
         if ((bytes == null) || (bytes.length == 0)) {
             return "";
@@ -205,7 +180,6 @@ public class ScannedDevice {
                 sum += accuracy;
             } else {
                 sb.append(signal.rssi + "past ");
-//                sum += BLE.STANDARD_DISTANCE_MAP.get(BLE.STANDARD_FAR).get(0);
                 i--;
             }
         }
