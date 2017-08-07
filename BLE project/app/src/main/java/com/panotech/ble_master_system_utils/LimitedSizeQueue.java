@@ -35,4 +35,15 @@ public class LimitedSizeQueue<K> extends ArrayList<K> {
         return get(0);
     }
 
+    public LimitedSizeQueue copy(LimitedSizeQueue<K> otherList){
+        int count = otherList.size();
+        LimitedSizeQueue<K> newList = new LimitedSizeQueue(count);
+        int position = 0;
+        while (position < count){
+            K k = otherList.get(position++);
+            newList.add(k);
+        }
+        return newList;
+    }
+
 }

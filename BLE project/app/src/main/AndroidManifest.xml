@@ -25,7 +25,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,20 +36,30 @@
         </activity>
         <activity android:name=".MainActivity"
             android:label=""
-            android:exported="true"/>
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"/>
         <activity android:name=".CheckActivity"
             android:label=""
-            android:exported="true"/>
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"/>
         <activity android:name=".CheckAbsenceActivity"
             android:label=""
-            android:exported="true"/>
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"/>
         <activity android:name=".SettingsActivity"
             android:label=""
             android:windowSoftInputMode="adjustPan"
-            android:exported="true"/>
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"/>
         <activity android:name=".TestShowLogActivity"
             android:label=""
-            android:exported="true"/>
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"/>
     </application>
 
 </manifest>

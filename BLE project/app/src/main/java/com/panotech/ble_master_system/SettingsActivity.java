@@ -150,62 +150,76 @@ public class SettingsActivity extends Activity {
         mHandler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
-                List<ScannedDevice> list = CommonData.mDeviceAdapter.getList();
-                Log.i("SETtiming", "UPDATED!");
+                try {
+                    List<ScannedDevice> list = CommonData.mDeviceAdapter.getList();
+                    Log.i("SETtiming", "UPDATED!");
 
-                if (list != null && list.size() > 0 && uuidList.get(0) != null) {
-                    boolean contain;
-                    for (ScannedDevice device : list) {
-                        if (uuidList.get(0).equals(device.getBLE().getProximityUuid().toUpperCase())) {
-                            contain = false;
-                            for (ScannedDevice device1 : myDeviceList) {
-                                if (device.getDevice().getAddress().equals(device1.getDevice().getAddress()))
+                    int pos = 0;
+                    while (pos < list.size()){
+                        ScannedDevice device = list.get(pos++);
+                        if(device.getBLE() != null){
+                            uuidList.add(device.getBLE().getProximityUuid().toUpperCase());
+                            Log.i("SETuuidlist", device.getBLE().getProximityUuid().toUpperCase());
+                        }
+                    }
+
+                    if (list != null && list.size() > 0 && uuidList.size() > 0) {
+                        boolean contain;
+                        for (ScannedDevice device : list) {
+                            if (uuidList.get(0).equals(device.getBLE().getProximityUuid().toUpperCase())) {
+                                contain = false;
+                                for (ScannedDevice device1 : myDeviceList) {
+                                    if (device.getDevice().getAddress().equals(device1.getDevice().getAddress()))
+                                        contain = true;
+                                }
+                                if (!contain) {
+                                    myDeviceList.add(device);
+                                }
+                            }
+                        }
+                    }
+
+                    if (list != null && list.size() > 0 && uuidList.size() > 0) {
+                        int k = 0;
+                        for (int i = 0; i < list.size(); i++) {
+                            ScannedDevice dev = list.get(i);
+                            Log.i("UUID is ------------", dev.getBLE().getProximityUuid().toUpperCase());
+
+                            if (!uuidList.get(0).equals(dev.getBLE().getProximityUuid().toUpperCase())) {
+                                continue;
+                            }
+
+                            boolean contain = false;
+                            for (int j = 0; j < myDeviceList.size(); j++) {
+                                ScannedDevice device = myDeviceList.get(j);
+                                if (dev.getDevice().getAddress().equals(device.getDevice().getAddress())) {
                                     contain = true;
+                                    break;
+                                }
                             }
-                            if (!contain) {
-                                myDeviceList.add(device);
-                            }
+
+                            if (!contain) continue;
+
+                            TextView ma = (TextView) findViewById(majorList.get(k));
+                            String maStr = String.valueOf(dev.getBLE().getMajor());
+                            ma.setText(maStr);
+
+                            TextView mi = (TextView) findViewById(minorList.get(k));
+                            String miStr = String.valueOf(dev.getBLE().getMinor());
+                            mi.setText(miStr);
+
+                            TextView dis = (TextView) findViewById(distantsList.get(k));
+                            double a = dev.getAveAccuracy();
+                            String disStr = calculateDistance(a);
+                            Log.i("SETdistance", disStr + dev.timeToString());
+                            dis.setText(disStr);
+                            k++;
                         }
                     }
                 }
-
-                if (list != null && list.size() > 0) {
-                    for (int i = 0; i < list.size(); i++) {
-                        ScannedDevice dev = list.get(i);
-                        int k = 0;
-                        Log.i("UUID is ------------", dev.getBLE().getProximityUuid().toUpperCase());
-
-                        if (!uuidList.get(0).equals(dev.getBLE().getProximityUuid().toUpperCase())){
-                            continue;
-                        }
-
-                        boolean contain = false;
-                        for(int j=0; j<myDeviceList.size(); j++){
-                            ScannedDevice device = myDeviceList.get(j);
-                            if(dev.getDevice().getAddress().equals(device.getDevice().getAddress())){
-                                contain = true;
-                                k = j;
-                            }
-                        }
-
-                        if(!contain){
-                            continue;
-                        }
-
-                        TextView ma =  (TextView)findViewById(majorList.get(k));
-                        String maStr = String.valueOf(dev.getBLE().getMajor());
-                        ma.setText(maStr);
-
-                        TextView mi =  (TextView)findViewById(minorList.get(k));
-                        String miStr = String.valueOf(dev.getBLE().getMinor());
-                        mi.setText(miStr);
-
-                        TextView dis =  (TextView)findViewById(distantsList.get(k));
-                        double a = dev.getAveAccuracy();
-                        String disStr = calculateDistance(a);
-                        Log.i("SETdistance", disStr + dev.timeToString());
-                        dis.setText(disStr);
-                    }
+                catch (Exception e){
+                    e.printStackTrace();
+                    throw e;
                 }
 
             }
@@ -225,105 +239,110 @@ public class SettingsActivity extends Activity {
                 public void onClick(View view) {
                     Toast.makeText(getApplicationContext(), getText(R.string.settings_startscan), Toast.LENGTH_SHORT).show();
 
-                    List<ScannedDevice> list = CommonData.mDeviceAdapter.getList();
-                    Spinner standard = (Spinner)findViewById(R.id.spinner_ble_standard);
-                    standard.setSelection(Visitors.getBle_standard());
+                    try {
+                        List<ScannedDevice> list = CommonData.mDeviceAdapter.getList();
+                        Spinner standard = (Spinner) findViewById(R.id.spinner_ble_standard);
+                        standard.setSelection(Visitors.getBle_standard());
 
-                    TextView uuidTextView =  (TextView)findViewById(R.id.textview_settings_uuid);
-                    Log.i("LISTSIZE", Integer.toString(list.size()));
-                    if (list != null && list.size() > 0 && uuidList.get(0) != null) {
+                        TextView uuidTextView = (TextView) findViewById(R.id.textview_settings_uuid);
+                        Log.i("LISTSIZE", Integer.toString(list.size()));
+                        if (list != null && list.size() > 0 && uuidList.size() > 0) {
 
-                        Log.i("Searching BLE devices", "size=" + list.size() );
-                        ScannedDevice deviceFirst = list.get(0);
-                        String uuid = deviceFirst.getBLE().getProximityUuid();
-                        Log.i("uuid length", "length=" + uuid.length() );
+                            Log.i("Searching BLE devices", "size=" + list.size());
+                            ScannedDevice deviceFirst = list.get(0);
+                            String uuid = deviceFirst.getBLE().getProximityUuid();
+                            Log.i("uuid length", "length=" + uuid.length());
 
-                        uuidTextView.setText(uuidList.get(0));
+                            uuidTextView.setText(uuidList.get(0));
 
-                        boolean contain;
-                        for(ScannedDevice device : list){
-                            if (uuidList.get(0).equals(device.getBLE().getProximityUuid().toUpperCase())){
+                            boolean contain;
+                            for (ScannedDevice device : list) {
+                                if (uuidList.get(0).equals(device.getBLE().getProximityUuid().toUpperCase())) {
+                                    contain = false;
+                                    for (ScannedDevice device1 : myDeviceList) {
+                                        if (device.getDevice().getAddress().equals(device1.getDevice().getAddress()))
+                                            contain = true;
+                                    }
+                                    if (!contain) {
+                                        myDeviceList.add(device);
+                                    }
+                                }
+                            }
+
+                            int k = 0;
+                            for (int i = 0; i < list.size(); i++) {
+                                ScannedDevice device = list.get(i);
                                 contain = false;
-                                for(ScannedDevice device1 : myDeviceList){
-                                    if(device.getDevice().getAddress().equals(device1.getDevice().getAddress())) contain = true;
+                                for (int j = 0; j < myDeviceList.size(); j++) {
+                                    ScannedDevice device1 = myDeviceList.get(j);
+                                    if (device1.getDevice().getAddress().equals(device.getDevice().getAddress())) {
+                                        contain = true;
+                                    }
                                 }
-                                if(!contain) {
-                                    myDeviceList.add(device);
+
+                                if (!contain) continue;
+
+                                TextView major = (TextView) findViewById(majorList.get(k));
+                                String majorStr = String.valueOf(device.getBLE().getMajor());
+                                major.setText(majorStr);
+
+                                TextView minor = (TextView) findViewById(minorList.get(k));
+                                String minorStr = String.valueOf(device.getBLE().getMinor());
+                                minor.setText(minorStr);
+
+                                double a = device.getAveAccuracy();
+                                TextView distance = (TextView) findViewById(distantsList.get(k));
+                                distance.setText(calculateDistance(a));
+
+                                if (Visitors.visitormap.isEmpty() || Visitors.visitormap.size() == 0) {
+                                    continue;
+                                } else {
+                                    EditText name = (EditText) findViewById(namesList.get(k));
+                                    String strName = name.getText().toString();
+
+                                    Spinner seat = (Spinner) findViewById(seatsList.get(k));
+                                    String strSeat = seat.getSelectedItem().toString();
+
+                                    Spinner feature = (Spinner) findViewById(featuresList.get(k));
+                                    String strFeature = feature.getSelectedItem().toString();
+
+                                    if (Visitors.visitormap.get(majorStr) != null && Visitors.visitormap.get(majorStr).get(minorStr) != null) {
+                                        Visitor visitor = Visitors.visitormap.get(majorStr).get(minorStr);
+                                        name.setText(visitor.name);
+                                        seat.setSelection(visitor.getSeatID());
+
+                                        feature.setSelection(visitor.getFeatureID());
+                                    }
                                 }
-                            }
-                        }
-
-                        int k = 0;
-                        for (int i = 0; i < list.size(); i++) {
-                            ScannedDevice device = list.get(i);
-                            contain = false;
-                            for(int j=0; j< myDeviceList.size(); j++){
-                                ScannedDevice device1 = myDeviceList.get(j);
-                                if(device1.getDevice().getAddress().equals(device.getDevice().getAddress())){
-                                    contain = true;
-                                    k = j;
-                                }
-                            }
-
-                            if(!contain) continue;
-
-                            TextView major =  (TextView)findViewById(majorList.get(k));
-                            String majorStr = String.valueOf(device.getBLE().getMajor());
-                            major.setText(majorStr);
-
-                            TextView minor =  (TextView)findViewById(minorList.get(k));
-                            String minorStr = String.valueOf(device.getBLE().getMinor());
-                            minor.setText(minorStr);
-
-                            double a = device.getAveAccuracy();
-                            TextView distance =  (TextView)findViewById(distantsList.get(k));
-                            distance.setText(calculateDistance(a));
-
-                            if (Visitors.visitormap.isEmpty() || Visitors.visitormap.size() == 0){
-                                continue;
-                            } else {
-                                EditText name =  (EditText) findViewById(namesList.get(i));
-                                String strName = name.getText().toString();
-
-                                Spinner seat =  (Spinner) findViewById(seatsList.get(i));
-                                String strSeat = seat.getSelectedItem().toString();
-
-                                Spinner feature = (Spinner)findViewById(featuresList.get(i));
-                                String strFeature = feature.getSelectedItem().toString();
-
-                                if (Visitors.visitormap.get(majorStr) != null && Visitors.visitormap.get(majorStr).get(minorStr) != null){
-                                    Visitor visitor = Visitors.visitormap.get(majorStr).get(minorStr);
-                                    name.setText(visitor.name);
-                                    seat.setSelection(visitor.getSeatID());
-
-                                    feature.setSelection(visitor.getFeatureID());
-                                }
+                                k++;
                             }
 
                         }
 
-                    }
 
-
-                    if(mTimer != null) {
-                        mTimer.cancel();
-                        mTimer = null;
-                        mTimer = new Timer();
-                        mTimer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                mHandler.sendEmptyMessage(0);
-                            }
-                        }, 0, CommonData.RefreshTime);
+                        if (mTimer != null) {
+                            mTimer.cancel();
+                            mTimer = null;
+                            mTimer = new Timer();
+                            mTimer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    mHandler.sendEmptyMessage(0);
+                                }
+                            }, 0, CommonData.RefreshTime);
+                        } else {
+                            mTimer = new Timer();
+                            mTimer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    mHandler.sendEmptyMessage(0);
+                                }
+                            }, CommonData.RefreshTime, CommonData.RefreshTime);
+                        }
                     }
-                    else{
-                        mTimer = new Timer();
-                        mTimer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                mHandler.sendEmptyMessage(0);
-                            }
-                        }, CommonData.RefreshTime, CommonData.RefreshTime);
+                    catch (Exception e){
+                        e.printStackTrace();
+                        throw e;
                     }
 
 

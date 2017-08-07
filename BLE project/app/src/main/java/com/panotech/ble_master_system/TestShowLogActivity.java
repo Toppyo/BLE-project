@@ -15,6 +15,9 @@ import android.widget.Toast;
 import com.panotech.ble_master_system_bluetooth.CommonData;
 import com.panotech.ble_master_system_utils.LimitedSizeQueue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by sylar on 2017/07/30.
  */
@@ -23,7 +26,7 @@ public class TestShowLogActivity extends Activity {
     private ListView mListView;
     private Button mRefreshButton;
     private myAdapter mAdapter;
-    private LimitedSizeQueue<String> mStrings = new LimitedSizeQueue<>(299);
+    private List<String> mStrings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,31 +34,37 @@ public class TestShowLogActivity extends Activity {
         setContentView(R.layout.activity_showlog);
         mListView = (ListView) findViewById(R.id.log_listview);
         mRefreshButton = (Button) findViewById(R.id.log_btn_refresh);
-        mStrings = CommonData.TestLogQueue;
-        mAdapter = new myAdapter(getApplicationContext(), R.layout.test_list_logdata, mStrings);
-        mAdapter.notifyDataSetChanged();
-        mListView.setAdapter(mAdapter);
-        mRefreshButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(
-                        getApplicationContext(), "Refreshing success!", Toast.LENGTH_SHORT
-                ).show();
-                mStrings = CommonData.TestLogQueue;
-                mAdapter = new myAdapter(getApplicationContext(), R.layout.test_list_logdata, mStrings);
-                mAdapter.notifyDataSetChanged();
-                mListView.setAdapter(mAdapter);
-            }
-        });
+        try {
+            mStrings = update(CommonData.TestLogQueue);
+            mAdapter = new myAdapter(getApplicationContext(), R.layout.test_list_logdata, mStrings);
+            mAdapter.notifyDataSetChanged();
+            mListView.setAdapter(mAdapter);
+            mRefreshButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(
+                            getApplicationContext(), "Refreshing success!", Toast.LENGTH_SHORT
+                    ).show();
+                    mStrings = update(CommonData.TestLogQueue);
+                    mAdapter = new myAdapter(getApplicationContext(), R.layout.test_list_logdata, mStrings);
+                    mAdapter.notifyDataSetChanged();
+                    mListView.setAdapter(mAdapter);
+                }
+            });
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     private class myAdapter extends ArrayAdapter<String> {
-        private LimitedSizeQueue<String> mList;
+        private List<String> mList;
         private LayoutInflater mInflater;
         private int mResId;
         private TextView mDataTextView;
 
-        public myAdapter(Context context, int resID, LimitedSizeQueue<String> list) {
+        public myAdapter(Context context, int resID, List<String> list) {
             super(context, resID, list);
             mResId = resID;
             mList = list;
@@ -72,5 +81,11 @@ public class TestShowLogActivity extends Activity {
             mDataTextView.setText("No." + String.valueOf(position + 1) + "    " + logData);
             return convertView;
         }
+    }
+
+    public List update(LimitedSizeQueue rawData){
+        List<String> newList = new ArrayList<>();
+        newList.addAll(rawData);
+        return newList;
     }
 }
