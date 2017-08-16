@@ -27,7 +27,7 @@ public class Visitor {
                 return 7;
             case "子女":
                 return 8;
-            case "外人":
+            case "海外":
                 return 9;
             default:
                 return 0;

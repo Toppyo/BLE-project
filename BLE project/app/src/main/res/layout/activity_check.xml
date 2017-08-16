@@ -21,9 +21,32 @@
             android:src="@drawable/check_big" />
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear_layout_check_button"
+        android:layout_below="@id/linear_layout_check_title"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="40dp"
+            android:id="@+id/check_btn_dis1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:id="@+id/check_btn_dis2"/>
+    </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/relative_layout_check_bar"
-        android:layout_below="@id/linear_layout_check_title"
+        android:layout_below="@id/linear_layout_check_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

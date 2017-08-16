@@ -43,7 +43,7 @@ public class SettingsActivity extends Activity {
     // 基準調整
     private static ArrayList<Integer> majorList = new ArrayList<>();
     private static ArrayList<Integer> minorList = new ArrayList<>();
-    private static ArrayList<Integer> distantsList = new ArrayList<>();
+//    private static ArrayList<Integer> distantsList = new ArrayList<>();
     private static ArrayList<Integer> namesList = new ArrayList<>();
     private static ArrayList<Integer> seatsList = new ArrayList<>();
     private static ArrayList<Integer> featuresList = new ArrayList<>();
@@ -71,16 +71,16 @@ public class SettingsActivity extends Activity {
         minorList.add(R.id.textview_settings_minor9);
         minorList.add(R.id.textview_settings_minor10);
 
-        distantsList.add(R.id.textview_settings_distance1);
-        distantsList.add(R.id.textview_settings_distance2);
-        distantsList.add(R.id.textview_settings_distance3);
-        distantsList.add(R.id.textview_settings_distance4);
-        distantsList.add(R.id.textview_settings_distance5);
-        distantsList.add(R.id.textview_settings_distance6);
-        distantsList.add(R.id.textview_settings_distance7);
-        distantsList.add(R.id.textview_settings_distance8);
-        distantsList.add(R.id.textview_settings_distance9);
-        distantsList.add(R.id.textview_settings_distance10);
+//        distantsList.add(R.id.textview_settings_distance1);
+//        distantsList.add(R.id.textview_settings_distance2);
+//        distantsList.add(R.id.textview_settings_distance3);
+//        distantsList.add(R.id.textview_settings_distance4);
+//        distantsList.add(R.id.textview_settings_distance5);
+//        distantsList.add(R.id.textview_settings_distance6);
+//        distantsList.add(R.id.textview_settings_distance7);
+//        distantsList.add(R.id.textview_settings_distance8);
+//        distantsList.add(R.id.textview_settings_distance9);
+//        distantsList.add(R.id.textview_settings_distance10);
 
         namesList.add(R.id.textview_settings_name1);
         namesList.add(R.id.textview_settings_name2);
@@ -208,11 +208,11 @@ public class SettingsActivity extends Activity {
                             String miStr = String.valueOf(dev.getBLE().getMinor());
                             mi.setText(miStr);
 
-                            TextView dis = (TextView) findViewById(distantsList.get(k));
-                            double a = dev.getAveAccuracy();
-                            String disStr = calculateDistance(a);
-                            Log.i("SETdistance", disStr + dev.timeToString());
-                            dis.setText(disStr);
+//                            TextView dis = (TextView) findViewById(distantsList.get(k));
+//                            double a = dev.getAveAccuracy();
+//                            String disStr = calculateDistance(a);
+//                            Log.i("SETdistance", disStr + dev.timeToString());
+//                            dis.setText(disStr);
                             k++;
                         }
                     }
@@ -225,8 +225,8 @@ public class SettingsActivity extends Activity {
             }
         };
 
-        Spinner stan = (Spinner)findViewById(R.id.spinner_ble_standard);
-        stan.setSelection(0);
+//        Spinner stan = (Spinner)findViewById(R.id.spinner_ble_standard);
+//        stan.setSelection(0);
 
 
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
@@ -241,8 +241,8 @@ public class SettingsActivity extends Activity {
 
                     try {
                         List<ScannedDevice> list = CommonData.mDeviceAdapter.getList();
-                        Spinner standard = (Spinner) findViewById(R.id.spinner_ble_standard);
-                        standard.setSelection(Visitors.getBle_standard());
+//                        Spinner standard = (Spinner) findViewById(R.id.spinner_ble_standard);
+//                        standard.setSelection(Visitors.getBle_standard());
 
                         TextView uuidTextView = (TextView) findViewById(R.id.textview_settings_uuid);
                         Log.i("LISTSIZE", Integer.toString(list.size()));
@@ -290,9 +290,9 @@ public class SettingsActivity extends Activity {
                                 String minorStr = String.valueOf(device.getBLE().getMinor());
                                 minor.setText(minorStr);
 
-                                double a = device.getAveAccuracy();
-                                TextView distance = (TextView) findViewById(distantsList.get(k));
-                                distance.setText(calculateDistance(a));
+//                                double a = device.getAveAccuracy();
+//                                TextView distance = (TextView) findViewById(distantsList.get(k));
+//                                distance.setText(calculateDistance(a));
 
                                 if (Visitors.visitormap.isEmpty() || Visitors.visitormap.size() == 0) {
                                     continue;
@@ -358,9 +358,9 @@ public class SettingsActivity extends Activity {
                     Visitors.visitormap.clear();
                     Visitors.clearBleStandard();
                     CommonData.WholePeople = 0;
-                    Spinner bleStandard = (Spinner)findViewById(R.id.spinner_ble_standard);
-                    String spinnerStr = bleStandard.getSelectedItem().toString();
-                    Visitors.setBleStandard(spinnerStr);
+//                    Spinner bleStandard = (Spinner)findViewById(R.id.spinner_ble_standard);
+//                    String spinnerStr = bleStandard.getSelectedItem().toString();
+//                    Visitors.setBleStandard(spinnerStr);
 
                     for (int i = 0; i < 10; i++) {
                         TextView major = (TextView) findViewById(majorList.get(i));
@@ -414,8 +414,8 @@ public class SettingsActivity extends Activity {
                         TextView minor =  (TextView)findViewById(minorList.get(i));
                         minor.setText("");
 
-                        TextView distance =  (TextView)findViewById(distantsList.get(i));
-                        distance.setText("");
+//                        TextView distance =  (TextView)findViewById(distantsList.get(i));
+//                        distance.setText("");
 
                         EditText name =  (EditText) findViewById(namesList.get(i));
                         name.setText("");
@@ -430,8 +430,8 @@ public class SettingsActivity extends Activity {
                     CommonData.WholePeople = 0;
                     Visitors.visitormap.clear();
                     Visitors.clearBleStandard();
-                    Spinner bleStandard = (Spinner)findViewById(R.id.spinner_ble_standard);
-                    bleStandard.setSelection(Visitors.getBle_standard());
+//                    Spinner bleStandard = (Spinner)findViewById(R.id.spinner_ble_standard);
+//                    bleStandard.setSelection(Visitors.getBle_standard());
 
                     if(mTimer != null) {
                         mTimer.cancel();

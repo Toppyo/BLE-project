@@ -33,34 +33,37 @@
             android:id="@+id/btn_settings_scan"
             android:layout_width="42dp"
             android:layout_height="22dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/scan"/>
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/scan"
+            android:layout_weight="1"/>
         <Button
             android:id="@+id/btn_settings_reset"
             android:layout_width="42dp"
             android:layout_height="22dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/reset"/>
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/reset"
+            android:layout_weight="1"/>
         <Button
             android:id="@+id/btn_settings_save"
             android:layout_width="42dp"
             android:layout_height="22dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/save"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="基準調整"
-            android:textSize="13sp"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/save"
+            android:layout_weight="1"/>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="基準調整"-->
+            <!--android:textSize="13sp"-->
+            <!--android:layout_marginLeft="20dp" />-->
 
-        <Spinner
-            android:id="@+id/spinner_ble_standard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/setting"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1" />
+        <!--<Spinner-->
+            <!--android:id="@+id/spinner_ble_standard"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:entries="@array/setting"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_weight="1" />-->
 
 
     </LinearLayout>
@@ -141,24 +144,41 @@
                 android:text=""
                 android:textSize="12sp"
                 android:background="@drawable/textborder"/>
+            <!--<TextView-->
+                <!--android:layout_width="40dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="15dp"-->
+                <!--android:text="@string/settings_name"-->
+                <!--android:textColor="@color/colorBlack"-->
+                <!--android:textSize="12sp"/>-->
+            <!--<EditText-->
+                <!--android:id="@+id/textview_settings_name1"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_marginRight="5dp"-->
+                <!--android:hint="@string/settings_name"-->
+                <!--android:enabled="true"-->
+                <!--android:descendantFocusability="afterDescendants"-->
+                <!--android:textSize="12sp"-->
+                <!--android:singleLine="true"/>-->
+
             <TextView
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="@string/settings_name"
-                android:textColor="@color/colorBlack"
-                android:textSize="12sp"/>
-            <EditText
-                android:id="@+id/textview_settings_name1"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginRight="5dp"
-                android:hint="@string/settings_name"
-                android:enabled="true"
-                android:descendantFocusability="afterDescendants"
+                android:layout_marginLeft="15dp"
+                android:text="@string/settings_Appear"
+                android:textColor="@color/colorBlack"
+                android:textSize="12sp"/>
+            <Spinner
+                android:id="@+id/spinner_settings_appear1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
                 android:textSize="12sp"
-                android:singleLine="true"/>
+                android:entries="@array/feature"/>
         </LinearLayout>
 
         <LinearLayout
@@ -167,22 +187,22 @@
             android:orientation="horizontal">
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/settings_distance1"
-                android:textColor="@color/colorBlack"
-                android:textSize="12sp"/>
-            <TextView
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/textview_settings_distance1"
-                android:background="@drawable/textborder"
-                android:text=""
-                android:textSize="12sp"/>
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="@string/settings_distance1"-->
+                <!--android:textColor="@color/colorBlack"-->
+                <!--android:textSize="12sp"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="40dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--android:id="@+id/textview_settings_distance1"-->
+                <!--android:background="@drawable/textborder"-->
+                <!--android:text=""-->
+                <!--android:textSize="12sp"/>-->
 
             <TextView
                 android:layout_width="wrap_content"
@@ -210,23 +230,42 @@
                 android:layout_weight="1"
                 android:textSize="12sp"
                 android:entries="@array/seats"/>
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--android:text="@string/settings_Appear"-->
+                <!--android:textColor="@color/colorBlack"-->
+                <!--android:textSize="12sp"/>-->
+            <!--<Spinner-->
+                <!--android:id="@+id/spinner_settings_appear1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:textSize="12sp"-->
+                <!--android:entries="@array/feature"/>-->
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="5dp"
-                android:text="@string/settings_Appear"
+                android:layout_marginLeft="15dp"
+                android:text="@string/settings_name"
                 android:textColor="@color/colorBlack"
                 android:textSize="12sp"/>
-
-            <Spinner
-                android:id="@+id/spinner_settings_appear1"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/textview_settings_name1"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:hint="@string/settings_name"
+                android:enabled="true"
+                android:descendantFocusability="afterDescendants"
                 android:textSize="12sp"
-                android:entries="@array/feature"/>
+                android:singleLine="true"/>
 
         </LinearLayout>
 
@@ -279,24 +318,43 @@
                     android:text=""
                     android:textSize="12sp"
                     android:background="@drawable/textborder"/>
+
+                <!--<TextView-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="15dp"-->
+                    <!--android:text="@string/settings_name"-->
+                    <!--android:textColor="@color/colorBlack"-->
+                    <!--android:textSize="12sp"/>-->
+                <!--<EditText-->
+                    <!--android:id="@+id/textview_settings_name2"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_marginRight="5dp"-->
+                    <!--android:hint="@string/settings_name"-->
+                    <!--android:enabled="true"-->
+                    <!--android:descendantFocusability="afterDescendants"-->
+                    <!--android:textSize="12sp"-->
+                    <!--android:singleLine="true"/>-->
+
                 <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="@string/settings_name"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="12sp"/>
-                <EditText
-                    android:id="@+id/textview_settings_name2"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginRight="5dp"
-                    android:hint="@string/settings_name"
-                    android:enabled="true"
-                    android:descendantFocusability="afterDescendants"
+                    android:layout_marginLeft="15dp"
+                    android:text="@string/settings_Appear"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"/>
+
+                <Spinner
+                    android:id="@+id/spinner_settings_appear2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
                     android:textSize="12sp"
-                    android:singleLine="true"/>
+                    android:entries="@array/feature"/>
             </LinearLayout>
 
             <LinearLayout
@@ -305,22 +363,22 @@
                 android:orientation="horizontal">
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/settings_distance2"
-                    android:layout_weight="1"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="12sp"/>
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="5dp"
-                    android:id="@+id/textview_settings_distance2"
-                    android:background="@drawable/textborder"
-                    android:text=""
-                    android:textSize="12sp"/>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/settings_distance2"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:textColor="@color/colorBlack"-->
+                    <!--android:textSize="12sp"/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_marginLeft="5dp"-->
+                    <!--android:id="@+id/textview_settings_distance2"-->
+                    <!--android:background="@drawable/textborder"-->
+                    <!--android:text=""-->
+                    <!--android:textSize="12sp"/>-->
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -348,24 +406,43 @@
                     android:layout_weight="1"
                     android:textSize="12sp"
                     android:entries="@array/seats"/>
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_marginLeft="5dp"-->
+                    <!--android:text="@string/settings_Appear"-->
+                    <!--android:textColor="@color/colorBlack"-->
+                    <!--android:textSize="12sp"/>-->
+
+                <!--<Spinner-->
+                    <!--android:id="@+id/spinner_settings_appear2"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_marginLeft="5dp"-->
+                    <!--android:textSize="12sp"-->
+                    <!--android:entries="@array/feature"/>-->
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="5dp"
-                    android:text="@string/settings_Appear"
+                    android:layout_marginLeft="15dp"
+                    android:text="@string/settings_name"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp"/>
-
-                <Spinner
-                    android:id="@+id/spinner_settings_appear2"
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/textview_settings_name2"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:hint="@string/settings_name"
+                    android:enabled="true"
+                    android:descendantFocusability="afterDescendants"
                     android:textSize="12sp"
-                    android:entries="@array/feature"/>
-
+                    android:singleLine="true"/>
             </LinearLayout>
 
             <LinearLayout
@@ -416,24 +493,44 @@
                         android:text=""
                         android:textSize="12sp"
                         android:background="@drawable/textborder"/>
+
+                    <!--<TextView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="15dp"-->
+                        <!--android:text="@string/settings_name"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"/>-->
+                    <!--<EditText-->
+                        <!--android:id="@+id/textview_settings_name3"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginRight="5dp"-->
+                        <!--android:hint="@string/settings_name"-->
+                        <!--android:enabled="true"-->
+                        <!--android:descendantFocusability="afterDescendants"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:singleLine="true"/>-->
+
                     <TextView
-                        android:layout_width="40dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="@string/settings_name"
+                        android:text="@string/settings_Appear"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"/>
-                    <EditText
-                        android:id="@+id/textview_settings_name3"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginRight="5dp"
-                        android:hint="@string/settings_name"
-                        android:enabled="true"
-                        android:descendantFocusability="afterDescendants"
                         android:textSize="12sp"
-                        android:singleLine="true"/>
+                        android:layout_weight="1"/>
+
+                    <Spinner
+                        android:id="@+id/spinner_settings_appear3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:entries="@array/feature" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -442,22 +539,22 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_distance3"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:id="@+id/textview_settings_distance3"
-                        android:background="@drawable/textborder"
-                        android:text=""
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/settings_distance3"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
+                    <!--<TextView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:id="@+id/textview_settings_distance3"-->
+                        <!--android:background="@drawable/textborder"-->
+                        <!--android:text=""-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -485,23 +582,43 @@
                         android:layout_weight="1"
                         android:textSize="12sp"
                         android:entries="@array/seats" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="@string/settings_Appear"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
 
-                    <Spinner
-                        android:id="@+id/spinner_settings_appear3"
-                        android:layout_width="wrap_content"
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:text="@string/settings_Appear"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
+
+                    <!--<Spinner-->
+                        <!--android:id="@+id/spinner_settings_appear3"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:entries="@array/feature" />-->
+
+                    <TextView
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:text="@string/settings_name"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp"/>
+                    <EditText
+                        android:id="@+id/textview_settings_name3"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginRight="5dp"
+                        android:hint="@string/settings_name"
+                        android:enabled="true"
+                        android:descendantFocusability="afterDescendants"
                         android:textSize="12sp"
-                        android:entries="@array/feature" />
+                        android:singleLine="true"/>
 
                 </LinearLayout>
 
@@ -554,24 +671,42 @@
                         android:text=""
                         android:textSize="12sp"
                         android:background="@drawable/textborder"/>
+
+                    <!--<TextView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="15dp"-->
+                        <!--android:text="@string/settings_name"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"/>-->
+                    <!--<EditText-->
+                        <!--android:id="@+id/textview_settings_name4"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginRight="5dp"-->
+                        <!--android:hint="@string/settings_name"-->
+                        <!--android:enabled="true"-->
+                        <!--android:descendantFocusability="afterDescendants"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:singleLine="true"/>-->
+
                     <TextView
-                        android:layout_width="40dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="@string/settings_name"
+                        android:text="@string/settings_Appear"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"/>
-                    <EditText
-                        android:id="@+id/textview_settings_name4"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginRight="5dp"
-                        android:hint="@string/settings_name"
-                        android:enabled="true"
-                        android:descendantFocusability="afterDescendants"
                         android:textSize="12sp"
-                        android:singleLine="true"/>
+                        android:layout_weight="1"/>
+                    <Spinner
+                        android:id="@+id/spinner_settings_appear4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:entries="@array/feature"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -580,22 +715,22 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_distance4"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:id="@+id/textview_settings_distance4"
-                        android:background="@drawable/textborder"
-                        android:text=""
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/settings_distance4"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
+                    <!--<TextView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:id="@+id/textview_settings_distance4"-->
+                        <!--android:background="@drawable/textborder"-->
+                        <!--android:text=""-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -623,24 +758,42 @@
                         android:layout_weight="1"
                         android:textSize="12sp"
                         android:entries="@array/seats" />
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:text="@string/settings_Appear"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
+                    <!--<Spinner-->
+                        <!--android:id="@+id/spinner_settings_appear4"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:entries="@array/feature"/>-->
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="@string/settings_Appear"
+                        android:layout_marginLeft="15dp"
+                        android:text="@string/settings_name"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
-
-                    <Spinner
-                        android:id="@+id/spinner_settings_appear4"
-                        android:layout_width="wrap_content"
+                        android:textSize="12sp"/>
+                    <EditText
+                        android:id="@+id/textview_settings_name4"
+                        android:layout_width="140dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="1"
+                        android:layout_marginRight="5dp"
+                        android:hint="@string/settings_name"
+                        android:enabled="true"
+                        android:descendantFocusability="afterDescendants"
                         android:textSize="12sp"
-                        android:entries="@array/feature"/>
-
+                        android:singleLine="true"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -691,24 +844,42 @@
                         android:text=""
                         android:textSize="12sp"
                         android:background="@drawable/textborder"/>
+
+                    <!--<TextView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="15dp"-->
+                        <!--android:text="@string/settings_name"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"/>-->
+                    <!--<EditText-->
+                        <!--android:id="@+id/textview_settings_name5"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginRight="5dp"-->
+                        <!--android:hint="@string/settings_name"-->
+                        <!--android:enabled="true"-->
+                        <!--android:descendantFocusability="afterDescendants"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:singleLine="true"/>-->
+
                     <TextView
-                        android:layout_width="40dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="@string/settings_name"
+                        android:text="@string/settings_Appear"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"/>
-                    <EditText
-                        android:id="@+id/textview_settings_name5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginRight="5dp"
-                        android:hint="@string/settings_name"
-                        android:enabled="true"
-                        android:descendantFocusability="afterDescendants"
                         android:textSize="12sp"
-                        android:singleLine="true"/>
+                        android:layout_weight="1"/>
+                    <Spinner
+                        android:id="@+id/spinner_settings_appear5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:entries="@array/feature"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -717,21 +888,21 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_distance5"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:id="@+id/textview_settings_distance5"
-                        android:background="@drawable/textborder"
-                        android:text=""
-                        android:textSize="12sp"/>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/settings_distance5"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
+                    <!--<TextView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:id="@+id/textview_settings_distance5"-->
+                        <!--android:background="@drawable/textborder"-->
+                        <!--android:text=""-->
+                        <!--android:textSize="12sp"/>-->
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -759,24 +930,42 @@
                         android:layout_weight="1"
                         android:textSize="12sp"
                         android:entries="@array/seats"/>
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:text="@string/settings_Appear"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
+                    <!--<Spinner-->
+                        <!--android:id="@+id/spinner_settings_appear5"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:entries="@array/feature"/>-->
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="@string/settings_Appear"
+                        android:layout_marginLeft="15dp"
+                        android:text="@string/settings_name"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
-
-                    <Spinner
-                        android:id="@+id/spinner_settings_appear5"
-                        android:layout_width="wrap_content"
+                        android:textSize="12sp"/>
+                    <EditText
+                        android:id="@+id/textview_settings_name5"
+                        android:layout_width="140dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="1"
+                        android:layout_marginRight="5dp"
+                        android:hint="@string/settings_name"
+                        android:enabled="true"
+                        android:descendantFocusability="afterDescendants"
                         android:textSize="12sp"
-                        android:entries="@array/feature"/>
-
+                        android:singleLine="true"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -827,24 +1016,42 @@
                         android:text=""
                         android:textSize="12sp"
                         android:background="@drawable/textborder"/>
+
+                    <!--<TextView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="15dp"-->
+                        <!--android:text="@string/settings_name"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"/>-->
+                    <!--<EditText-->
+                        <!--android:id="@+id/textview_settings_name6"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginRight="5dp"-->
+                        <!--android:hint="@string/settings_name"-->
+                        <!--android:enabled="true"-->
+                        <!--android:descendantFocusability="afterDescendants"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:singleLine="true"/>-->
+
                     <TextView
-                        android:layout_width="40dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="@string/settings_name"
+                        android:text="@string/settings_Appear"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"/>
-                    <EditText
-                        android:id="@+id/textview_settings_name6"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginRight="5dp"
-                        android:hint="@string/settings_name"
-                        android:enabled="true"
-                        android:descendantFocusability="afterDescendants"
                         android:textSize="12sp"
-                        android:singleLine="true"/>
+                        android:layout_weight="1"/>
+                    <Spinner
+                        android:id="@+id/spinner_settings_appear6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:entries="@array/feature"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -853,22 +1060,22 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_distance6"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:id="@+id/textview_settings_distance6"
-                        android:background="@drawable/textborder"
-                        android:text=""
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/settings_distance6"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
+                    <!--<TextView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:id="@+id/textview_settings_distance6"-->
+                        <!--android:background="@drawable/textborder"-->
+                        <!--android:text=""-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -896,24 +1103,42 @@
                         android:layout_weight="1"
                         android:textSize="12sp"
                         android:entries="@array/seats"/>
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:text="@string/settings_Appear"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
+                    <!--<Spinner-->
+                        <!--android:id="@+id/spinner_settings_appear6"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:entries="@array/feature"/>-->
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="@string/settings_Appear"
+                        android:layout_marginLeft="15dp"
+                        android:text="@string/settings_name"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
-
-                    <Spinner
-                        android:id="@+id/spinner_settings_appear6"
-                        android:layout_width="wrap_content"
+                        android:textSize="12sp"/>
+                    <EditText
+                        android:id="@+id/textview_settings_name6"
+                        android:layout_width="140dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="1"
+                        android:layout_marginRight="5dp"
+                        android:hint="@string/settings_name"
+                        android:enabled="true"
+                        android:descendantFocusability="afterDescendants"
                         android:textSize="12sp"
-                        android:entries="@array/feature"/>
-
+                        android:singleLine="true"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -964,24 +1189,42 @@
                         android:text=""
                         android:textSize="12sp"
                         android:background="@drawable/textborder"/>
+
+                    <!--<TextView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="15dp"-->
+                        <!--android:text="@string/settings_name"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"/>-->
+                    <!--<EditText-->
+                        <!--android:id="@+id/textview_settings_name7"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginRight="5dp"-->
+                        <!--android:hint="@string/settings_name"-->
+                        <!--android:enabled="true"-->
+                        <!--android:descendantFocusability="afterDescendants"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:singleLine="true"/>-->
+
                     <TextView
-                        android:layout_width="40dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="@string/settings_name"
+                        android:text="@string/settings_Appear"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"/>
-                    <EditText
-                        android:id="@+id/textview_settings_name7"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginRight="5dp"
-                        android:hint="@string/settings_name"
-                        android:enabled="true"
-                        android:descendantFocusability="afterDescendants"
                         android:textSize="12sp"
-                        android:singleLine="true"/>
+                        android:layout_weight="1"/>
+                    <Spinner
+                        android:id="@+id/spinner_settings_appear7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:entries="@array/feature"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -990,22 +1233,22 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_distance7"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:id="@+id/textview_settings_distance7"
-                        android:background="@drawable/textborder"
-                        android:text=""
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/settings_distance7"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
+                    <!--<TextView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:id="@+id/textview_settings_distance7"-->
+                        <!--android:background="@drawable/textborder"-->
+                        <!--android:text=""-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1033,24 +1276,42 @@
                         android:layout_weight="1"
                         android:textSize="12sp"
                         android:entries="@array/seats" />
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:text="@string/settings_Appear"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
+                    <!--<Spinner-->
+                        <!--android:id="@+id/spinner_settings_appear7"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:entries="@array/feature"/>-->
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="@string/settings_Appear"
+                        android:layout_marginLeft="15dp"
+                        android:text="@string/settings_name"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
-
-                    <Spinner
-                        android:id="@+id/spinner_settings_appear7"
-                        android:layout_width="wrap_content"
+                        android:textSize="12sp"/>
+                    <EditText
+                        android:id="@+id/textview_settings_name7"
+                        android:layout_width="140dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="1"
+                        android:layout_marginRight="5dp"
+                        android:hint="@string/settings_name"
+                        android:enabled="true"
+                        android:descendantFocusability="afterDescendants"
                         android:textSize="12sp"
-                        android:entries="@array/feature"/>
-
+                        android:singleLine="true"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -1101,24 +1362,41 @@
                         android:text=""
                         android:textSize="12sp"
                         android:background="@drawable/textborder"/>
+
+                    <!--<TextView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="15dp"-->
+                        <!--android:text="@string/settings_name"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"/>-->
+                    <!--<EditText-->
+                        <!--android:id="@+id/textview_settings_name8"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginRight="5dp"-->
+                        <!--android:hint="@string/settings_name"-->
+                        <!--android:enabled="true"-->
+                        <!--android:descendantFocusability="afterDescendants"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:singleLine="true"/>-->
+
                     <TextView
-                        android:layout_width="40dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="@string/settings_name"
+                        android:text="@string/settings_Appear"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"/>
-                    <EditText
-                        android:id="@+id/textview_settings_name8"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginRight="5dp"
-                        android:hint="@string/settings_name"
-                        android:enabled="true"
-                        android:descendantFocusability="afterDescendants"
                         android:textSize="12sp"
-                        android:singleLine="true"/>
+                        android:layout_weight="1"/>
+                    <Spinner
+                        android:id="@+id/spinner_settings_appear8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -1127,22 +1405,22 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_distance8"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:id="@+id/textview_settings_distance8"
-                        android:background="@drawable/textborder"
-                        android:text=""
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/settings_distance8"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
+                    <!--<TextView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:id="@+id/textview_settings_distance8"-->
+                        <!--android:background="@drawable/textborder"-->
+                        <!--android:text=""-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1170,24 +1448,42 @@
                         android:layout_weight="1"
                         android:textSize="12sp"
                         android:entries="@array/seats"/>
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:text="@string/settings_Appear"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
+                    <!--<Spinner-->
+                        <!--android:id="@+id/spinner_settings_appear8"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:entries="@array/feature"/>-->
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="@string/settings_Appear"
+                        android:layout_marginLeft="15dp"
+                        android:text="@string/settings_name"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
-
-                    <Spinner
-                        android:id="@+id/spinner_settings_appear8"
-                        android:layout_width="wrap_content"
+                        android:textSize="12sp"/>
+                    <EditText
+                        android:id="@+id/textview_settings_name8"
+                        android:layout_width="140dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="1"
+                        android:layout_marginRight="5dp"
+                        android:hint="@string/settings_name"
+                        android:enabled="true"
+                        android:descendantFocusability="afterDescendants"
                         android:textSize="12sp"
-                        android:entries="@array/feature"/>
-
+                        android:singleLine="true"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -1238,24 +1534,42 @@
                         android:text=""
                         android:textSize="12sp"
                         android:background="@drawable/textborder"/>
+
+                    <!--<TextView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="15dp"-->
+                        <!--android:text="@string/settings_name"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"/>-->
+                    <!--<EditText-->
+                        <!--android:id="@+id/textview_settings_name9"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginRight="5dp"-->
+                        <!--android:hint="@string/settings_name"-->
+                        <!--android:enabled="true"-->
+                        <!--android:descendantFocusability="afterDescendants"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:singleLine="true"/>-->
+
                     <TextView
-                        android:layout_width="40dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="@string/settings_name"
+                        android:text="@string/settings_Appear"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"/>
-                    <EditText
-                        android:id="@+id/textview_settings_name9"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginRight="5dp"
-                        android:hint="@string/settings_name"
-                        android:enabled="true"
-                        android:descendantFocusability="afterDescendants"
                         android:textSize="12sp"
-                        android:singleLine="true"/>
+                        android:layout_weight="1"/>
+                    <Spinner
+                        android:id="@+id/spinner_settings_appear9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:entries="@array/feature"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -1264,22 +1578,22 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_distance9"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:id="@+id/textview_settings_distance9"
-                        android:background="@drawable/textborder"
-                        android:text=""
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/settings_distance9"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
+                    <!--<TextView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:id="@+id/textview_settings_distance9"-->
+                        <!--android:background="@drawable/textborder"-->
+                        <!--android:text=""-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1307,24 +1621,42 @@
                         android:layout_weight="1"
                         android:textSize="12sp"
                         android:entries="@array/seats"/>
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:text="@string/settings_Appear"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
+                    <!--<Spinner-->
+                        <!--android:id="@+id/spinner_settings_appear9"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:entries="@array/feature"/>-->
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="@string/settings_Appear"
+                        android:layout_marginLeft="15dp"
+                        android:text="@string/settings_name"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
-
-                    <Spinner
-                        android:id="@+id/spinner_settings_appear9"
-                        android:layout_width="wrap_content"
+                        android:textSize="12sp"/>
+                    <EditText
+                        android:id="@+id/textview_settings_name9"
+                        android:layout_width="140dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="1"
+                        android:layout_marginRight="5dp"
+                        android:hint="@string/settings_name"
+                        android:enabled="true"
+                        android:descendantFocusability="afterDescendants"
                         android:textSize="12sp"
-                        android:entries="@array/feature"/>
-
+                        android:singleLine="true"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -1375,24 +1707,42 @@
                         android:text=""
                         android:textSize="12sp"
                         android:background="@drawable/textborder"/>
+
+                    <!--<TextView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="15dp"-->
+                        <!--android:text="@string/settings_name"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"/>-->
+                    <!--<EditText-->
+                        <!--android:id="@+id/textview_settings_name10"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginRight="5dp"-->
+                        <!--android:hint="@string/settings_name"-->
+                        <!--android:enabled="true"-->
+                        <!--android:descendantFocusability="afterDescendants"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:singleLine="true"/>-->
+
                     <TextView
-                        android:layout_width="40dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="@string/settings_name"
+                        android:text="@string/settings_Appear"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"/>
-                    <EditText
-                        android:id="@+id/textview_settings_name10"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginRight="5dp"
-                        android:hint="@string/settings_name"
-                        android:enabled="true"
-                        android:descendantFocusability="afterDescendants"
                         android:textSize="12sp"
-                        android:singleLine="true"/>
+                        android:layout_weight="1"/>
+                    <Spinner
+                        android:id="@+id/spinner_settings_appear10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:entries="@array/feature"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -1401,22 +1751,22 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_distance10"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:id="@+id/textview_settings_distance10"
-                        android:background="@drawable/textborder"
-                        android:text=""
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/settings_distance10"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
+                    <!--<TextView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:id="@+id/textview_settings_distance10"-->
+                        <!--android:background="@drawable/textborder"-->
+                        <!--android:text=""-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1444,24 +1794,42 @@
                         android:layout_weight="1"
                         android:textSize="12sp"
                         android:entries="@array/seats" />
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:text="@string/settings_Appear"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:layout_weight="1"/>-->
+                    <!--<Spinner-->
+                        <!--android:id="@+id/spinner_settings_appear10"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:textSize="12sp"-->
+                        <!--android:entries="@array/feature"/>-->
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="@string/settings_Appear"
+                        android:layout_marginLeft="15dp"
+                        android:text="@string/settings_name"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:layout_weight="1"/>
-
-                    <Spinner
-                        android:id="@+id/spinner_settings_appear10"
-                        android:layout_width="wrap_content"
+                        android:textSize="12sp"/>
+                    <EditText
+                        android:id="@+id/textview_settings_name10"
+                        android:layout_width="140dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_weight="1"
+                        android:layout_marginRight="5dp"
+                        android:hint="@string/settings_name"
+                        android:enabled="true"
+                        android:descendantFocusability="afterDescendants"
                         android:textSize="12sp"
-                        android:entries="@array/feature"/>
-
+                        android:singleLine="true"/>
                 </LinearLayout>
 
                 <LinearLayout

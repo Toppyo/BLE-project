@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ import static com.panotech.ble_master_system_webconnect.SeatNumber.CheckSeat2;
 public class CheckActivity extends Activity {
     private BusTableView mTestTableView;
     private TextView mWholeTextView, mPresentTextView, mAbsentTextView;
+    private Button mDis1Button, mDis2Button;
     private LinearLayout mainLayout;
     private List<ScannedDevice> list;
     private int PeopleCount = 0;
@@ -52,6 +54,8 @@ public class CheckActivity extends Activity {
         mWholeTextView = (TextView)findViewById(R.id.check_whole_people);
         mPresentTextView = (TextView)findViewById(R.id.check_present_people);
         mAbsentTextView = (TextView)findViewById(R.id.check_absent_people);
+        mDis1Button = (Button)findViewById(R.id.check_btn_dis1);
+        mDis2Button = (Button)findViewById(R.id.check_btn_dis2);
         initCheckUI();
         list = CommonData.mDeviceAdapter.getList();
         mainLayout = (LinearLayout)findViewById(R.id.test_layout_container);
@@ -83,6 +87,42 @@ public class CheckActivity extends Activity {
                 mHandler.sendEmptyMessage(0);
             }
         },CommonData.RefreshTime,CommonData.RefreshTime);
+
+        mDis1Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Visitors.setBleStandard("0");
+                if(mTimer != null){
+                    mTimer.cancel();
+                    mTimer = null;
+                }
+                mTimer = new Timer();
+                mTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        mHandler.sendEmptyMessage(0);
+                    }
+                },0,CommonData.RefreshTime);
+            }
+        });
+
+        mDis2Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Visitors.setBleStandard("1");
+                if(mTimer != null){
+                    mTimer.cancel();
+                    mTimer = null;
+                }
+                mTimer = new Timer();
+                mTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        mHandler.sendEmptyMessage(0);
+                    }
+                },0,CommonData.RefreshTime);
+            }
+        });
     }
 
     private void AddCustomersRows(BusTableView view) {
