@@ -213,9 +213,9 @@ public class BLE {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("UUID=").append(this.proximityUuid.toUpperCase());
-        sb.append(" Major=").append(this.major);
-        sb.append(" Minor=").append(this.minor);
-        sb.append(" TxPower=").append(this.txPower);
+        sb.append(" \nMajor=").append(this.major);
+        sb.append(" \nMinor=").append(this.minor);
+        sb.append(" \nTxPower=").append(this.txPower);
 
         return sb.toString();
     }

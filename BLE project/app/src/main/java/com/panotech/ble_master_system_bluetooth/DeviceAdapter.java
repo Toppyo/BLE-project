@@ -91,9 +91,9 @@ public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
                 device.rssiStore.add(signal);
                 if(device.getBLE() != null) {
                     long time = System.currentTimeMillis();
-                    String logData = device.getBLE().toString() + " Rssi=" + String.valueOf(rssi)
-                            + "  DistanceQueueAve=" + String.valueOf(df.format(device.getAveAccuracy()))
-                            + " DDM:" + device.showScanData().substring(0, 59) + "  " + DateUtil.get_yyyyMMddHHmmssSSS(time);
+                    String logData = device.getBLE().toString() + " \nRssi=" + String.valueOf(rssi)
+                            + "  \nDistanceQueueAve=" + String.valueOf(df.format(device.getAveAccuracy()))
+                            + " \nDDM:" + device.showScanData().substring(0, 59) + "  \n" + DateUtil.get_yyyyMMddHHmmssSSS(time);
                     Log.i("DALOG", logData);
                     CommonData.TestLogQueue.add(logData);
                 }

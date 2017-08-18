@@ -13,7 +13,7 @@ import java.util.Date;
 public class CommonData {
     public static DeviceAdapter mDeviceAdapter;
 
-    public static LimitedSizeQueue<String> TestLogQueue = new LimitedSizeQueue<>(299);
+    public static LimitedSizeQueue<String> TestLogQueue = new LimitedSizeQueue<>(9);
 
     public static int WholePeople = 0;
 
