@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.panotech.ble_master_system_bluetooth.BLE;
 import com.panotech.ble_master_system_bluetooth.CommonData;
@@ -91,7 +92,8 @@ public class CheckActivity extends Activity {
         mDis1Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Visitors.setBleStandard("0");
+                Toast.makeText(getApplicationContext(), "近１になりました！", Toast.LENGTH_SHORT).show();
+                Visitors.setBleStandard("内");
                 if(mTimer != null){
                     mTimer.cancel();
                     mTimer = null;
@@ -109,7 +111,8 @@ public class CheckActivity extends Activity {
         mDis2Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Visitors.setBleStandard("1");
+                Toast.makeText(getApplicationContext(), "近２になりました！", Toast.LENGTH_SHORT).show();
+                Visitors.setBleStandard("中");
                 if(mTimer != null){
                     mTimer.cancel();
                     mTimer = null;
